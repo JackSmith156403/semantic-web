@@ -1,0 +1,414 @@
+@prefix s:     <http://schema.org/> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix mv:    <http://schema.mobivoc.org/#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gr:    <http://purl.org/goodrelations/v1#> .
+@prefix vs:    <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+
+mv:RealTimeCapacity  a    owl:Class , rdfs:Class ;
+        rdfs:comment      "Real-time capacity of a parking facility or parking space."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Echtzeit-Kapazität"@de , "Real time capacity"@en ;
+        rdfs:subClassOf   mv:Capacity ;
+        dct:created       "2017-05-15"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:PerpendicularParking
+        a                 mv:ArrangementPattern ;
+        rdfs:comment      "With perpendicular parking, vehicles are parked side to side, perpendicular to an aisle, curb, or wall. This type of parking is commonly used in parking lots and parking facilities."@en , "Bei der Senkrechtaufstellung wird das Fahrzeug mit einem Aufstellwinkel von von 100 gon (90°) geparkt."@de ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Senkrechtaufstellung"@de , "Perpendicular parking"@en ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en ;
+        skos:altLabel     "Bay parking"@en ;
+        skos:prefLabel    "Perpendicular parking"@en .
+
+mv:ArrangementPattern
+        a                 owl:Class , rdfs:Class ;
+        rdfs:comment      "Art und Weise, wie ein Fahrzeug auf einer Parkfläche aufgestellt wird."@de , "Pattern how parking spaces are arranged in a parking facility Akash or at roadside."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Aufstellart"@de , "Arrangement pattern"@en ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParkingBarrier  a      mv:ParkingFacilityFeature ;
+        rdfs:comment      "The parking facility has a parking barrier."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parkschranke"@de , "Parking barrier"@en .
+
+mv:ParkingFacilityFeature
+        a                 owl:Class , rdfs:Class ;
+        rdfs:comment      "Features of the parking facility (e.g. parking for disabled people)."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parking facility feature"@en , "Ausstattung der Parkeinrichtung"@de ;
+        dct:created       "2017-04-13"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParkingFacilityConnection
+        a                 owl:Class , rdfs:Class ;
+        rdfs:comment      "Transport connections available at the parking facility (e.g. Park & Ride)."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parking facility connections"@en , "Anschlussmöglichkeiten der Parkeinrichtung"@de ;
+        dct:created       "2017-06-09"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:feature  a             owl:ObjectProperty , rdf:Property ;
+        rdfs:comment      "Indicates which feature the parking facility provides."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Ausstattung"@de ;
+        rdfs:range        mv:ParkingFacilityFeature ;
+        dct:created       "2017-09-01"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParkingFacility  a        owl:Class , rdfs:Class ;
+        rdfs:comment         "Any facility or area assigned for parking vehicles. A parking facility can provide one or more parking spaces."@en ;
+        rdfs:isDefinedBy     mv: ;
+        rdfs:label           "Parking facility"@en , "Parkeinrichtung"@de ;
+        rdfs:subClassOf      s:CivicStructure ;
+        dct:created          "2014-10-16"^^xsd:date ;
+        dct:modified         "2018-01-12"^^xsd:date ;
+        owl:equivalentClass  s:ParkingFacility ;
+        vs:term_status       "stable"@en .
+
+dct:date  a               rdf:Property ;
+        rdfs:comment      "A point or period of time associated with an event in the lifecycle of the resource."@en ;
+        rdfs:isDefinedBy  dct: ;
+        rdfs:label        "Date"@en ;
+        rdfs:range        rdfs:Literal ;
+        dct:description   "Date may be used to express temporal information at any level of granularity.  Recommended best practice is to use an encoding scheme, such as the W3CDTF profile of ISO 8601 [W3CDTF]."@en ;
+        dct:issued        "2008-01-14"^^xsd:date ;
+        dct:modified      "2008-01-14"^^xsd:date .
+
+mv:ParkingGarage  a       owl:Class , rdfs:Class ;
+        rdfs:comment      "A single level or multilevel parking building to park at."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parkhaus"@de , "Parking garage"@en ;
+        rdfs:subClassOf   mv:ParkingFacility ;
+        dct:created       "2017-04-13"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en ;
+        skos:altLabel     "Car park"@en , "Parking building"@en , "Hochgarage"@de , "Parking structure"@en ;
+        skos:prefLabel    "Parkhaus"@de , "Parking garage"@en .
+
+mv:ParkAndRail  a         mv:ParkingFacilityConnection ;
+        rdfs:comment      "Connection to railway station."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Park and Rail"@en .
+
+mv:PayStation  a          mv:ParkingFacilityFeature ;
+        rdfs:comment      "The parking facility has a pay station."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Pay station"@en , "Kassenautomat"@de .
+
+mv:UndergroundParkingGarage
+        a                 owl:Class , rdfs:Class ;
+        rdfs:comment      "Parking facility with one or more levels below the surface and none above ground."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Tiefgarage"@de , "Underground parking garage"@en ;
+        rdfs:subClassOf   mv:ParkingFacility ;
+        dct:created       "2017-04-13"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en ;
+        skos:altLabel     "Rampengarage"@de ;
+        skos:prefLabel    "Tiefgarage"@de , "Underground parking garage"@en .
+
+mv:entrance  a            owl:ObjectProperty , rdf:Property ;
+        rdfs:comment      "Describes the entrance of a parking facility."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "hat Einfahrt"@de , "entrance"@en ;
+        rdfs:range        mv:ParkingFacilityEntrance ;
+        dct:created       "2017-05-15"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParkingFacilityEntrance
+        a                 owl:Class , rdfs:Class ;
+        rdfs:comment      "Entrance of a parking facility where vehicles can enter the parking facility."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Entrance"@en , "Einfahrt"@de ;
+        rdfs:subClassOf   s:CivicStructure ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:exit  a                owl:ObjectProperty , rdf:Property ;
+        rdfs:comment      "Describes the exit of a parking facility."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "hat Ausfahrt"@de , "exit"@en ;
+        rdfs:range        mv:ParkingFacilityExit ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParkingFacilityExit
+        a                 owl:Class , rdfs:Class ;
+        rdfs:comment      "Exit of a parking facility where vehicles can leave the parking facility."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Ausfahrt"@de , "Exit"@en ;
+        rdfs:subClassOf   s:CivicStructure ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:exitRate  a            owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "The rate at which vehicles are exiting the parking facility."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "exit rate"@en ;
+        rdfs:range        xsd:string ;
+        dct:created       "2017-06-07"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:fillRate  a            owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "The rate at which vehicles are entering the parking facility."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "fill rate"@en ;
+        rdfs:range        xsd:string ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:Carpooling  a          mv:ParkingFacilityConnection ;
+        rdfs:comment      "Parking facility used for carpooling or ridesharing."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parken und Mitfahren"@de , "Carpooling" ;
+        skos:altLabel     "Parken und Mitnehmen"@de , "Park & Drive" , "P+M" , "P&M" .
+
+mv:ParkAndRide  a         mv:ParkingFacilityConnection ;
+        rdfs:comment      "Connection to public transport."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parken und Reisen"@de , "Park & Ride"@en ;
+        skos:altLabel     "P+R"@en , "P&R"@en .
+
+mv:VideoSurveillance  a   mv:ParkingFacilityFeature ;
+        rdfs:comment      "The parking facility is surveilled by video."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Videoüberwachung"@de , "Video surveillance"@en .
+
+mv:currentValue  a        owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "Indicates the current value of the real-time capacity."@en ;
+        rdfs:domain       mv:RealTimeCapacity ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "current value"@en , "aktueller Wert"@de , "valeur courante"@fr ;
+        rdfs:range        xsd:integer ;
+        dct:created       "2015-05-15"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:level  a               owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "Indicates the level of a parking facility the parking space is located in."@en ;
+        rdfs:domain       mv:ParkingSpace ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "level"@en , "Ebene"@de ;
+        rdfs:range        xsd:integer ;
+        dct:created       "2018-01-11"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParkingSpace  a        owl:Class , rdfs:Class ;
+        rdfs:comment      "A parking space is a location that is designated for parking a vehicle. A parking space has a certain size, is sometimes marked and can be located at roadside or inside a parking facility. Depending on the location of the parking space, there can be regulations regarding the time allowed to park and a fee paid to use the parking space."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parking space"@en , "Stellplatz"@de ;
+        rdfs:subClassOf   s:CivicStructure ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en ;
+        skos:altLabel     "Parking spot"@en ;
+        skos:hiddenLabel  "Parkplatz"@de ;
+        skos:prefLabel    "Parking space"@en , "Stellplatz"@de .
+
+mv:SurveillanceBySecurityGuards
+        a                 mv:ParkingFacilityFeature ;
+        rdfs:comment      "The parking facility is surveilled by security guards."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Surveillance by security guards"@en , "Bewacht durch Personal"@de .
+
+s:ParkingFacility  a      rdfs:Class ;
+        rdfs:comment      "A parking lot or other parking facility." ;
+        rdfs:isDefinedBy  s: ;
+        rdfs:label        "ParkingFacility" .
+
+mv:charger  a             owl:ObjectProperty , rdf:Property ;
+        rdfs:comment      "Indicates whether chargers are available at the parking space. Anisur Rahman Akash"@en ;
+        rdfs:domain       mv:ParkingSpace ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "hat Ladegerät"@de , "has charger"@en ;
+        rdfs:range        mv:Charger ;
+        dct:created       "2017-04-13"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParkAndFly  a          mv:ParkingFacilityConnection ;
+        rdfs:comment      "Connection to airport."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parken und Fliegen"@de , "Park & Fly" ;
+        skos:altLabel     "P+F"@en , "P&F"@en .
+
+mv:AngleParking  a        mv:ArrangementPattern ;
+        rdfs:comment      "Bei der Schrägaufstellung wird das Fahrzeug mit einem Aufstellwinkel zwischen 50 und 90 gon (45° und ca. 81°) geparkt. Das Fahrzeug kann vorwärts in den Parkstand einfahren, muss zum Ausparken jedoch wieder rückwärts herausfahren. Diese Aufstellung wird oft bei Parkplätzen verwendet, da sie schmalere Fahrwege als die Senkrechtaufstellung und bessere Platzausnutzung als Parallelaufstellung ermöglicht."@de , "Parking where the parking spaces are arranged at an acute angle to the direction of approach, allowing the driver to enter a space easily and later reverse back out."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Schrägaufstellung"@de , "Angle parking"@en ;
+        dct:created       "2017-05-31"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en ;
+        skos:altLabel     "Echelon parking"@en-uk .
+
+mv:maximumParkingHours
+        a                 owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "Indicates the maximum parking hours a vehicle is allowed to use a parking space or parking facility."@en ;
+        rdfs:domain       [ a            owl:Class ;
+                            owl:unionOf  ( mv:ParkingFacility mv:ParkingSpace )
+                          ] ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "maximale Parkdauer"@de , "maximum parking hour"@en ;
+        rdfs:range        xsd:string .
+
+mv:parkingSpace  a        owl:ObjectProperty , rdf:Property ;
+        rdfs:comment      "Relates the parking facility to a contained parking space."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "hat Stellplatz"@de , "parking space"@en ;
+        rdfs:range        mv:ParkingSpace ;
+        dct:created       "2017-05-15"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParkingLot  a          owl:Class , rdfs:Class ;
+        rdfs:comment      "Parking area on a single groundfloor level that is usually located outdoor."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parkplatz"@de , "Parking lot"@en ;
+        rdfs:subClassOf   mv:ParkingFacility ;
+        dct:created       "2017-05-30"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en ;
+        skos:altLabel     "Parkfläche"@de , "car lot"@en ;
+        skos:prefLabel    "Parkplatz"@de , "Car park"@en-uk , "Parking lot"@en-us .
+
+mv:maximumValue  a        owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "Indicates the maximum value of the capacity."@en ;
+        rdfs:domain       mv:Capacity ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Maximalwert"@de , "maximum value"@en ;
+        rdfs:range        xsd:integer ;
+        dct:created       "2015-05-15"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:totalNumberOfChargers
+        a                 owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "Indicates the total number of chargers available in a parking facility."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Gesamtzahl an Ladegeräten"@de , "total number of chargers"@en ;
+        rdfs:range        xsd:integer .
+
+mv:AutomatedParkingGarage
+        a                 owl:Class , rdfs:Class ;
+        rdfs:comment      "Parking garage with an automated parking system that automatically moves cars to the available parking space somewhere in the garage."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Automated parking garage"@en , "Automatisches Parkhaus"@de ;
+        rdfs:subClassOf   mv:ParkingFacility ;
+        dct:created       "2017-04-13"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:connectedTo  a         owl:ObjectProperty , rdf:Property ;
+        rdfs:comment      "Indicates the transport connections available. Doa korben vai"@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Anschluss an"@de , "connected to"@en ;
+        rdfs:range        mv:ParkingFacilityConnection ;
+        dct:created       "2017-05-30"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:arrangement  a         owl:ObjectProperty , rdf:Property ;
+        rdfs:comment      "Indicates in which pattern a parking space is arranged."@en ;
+        rdfs:domain       [ a            owl:Class ;
+                            owl:unionOf  ( mv:ParkingSpace mv:ParkingFacility )
+                          ] ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Anordnung"@de , "arrangement pattern"@en ;
+        rdfs:range        mv:ArrangementPattern ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:BicycleParkingStation
+        a                 owl:Class , rdfs:Class ;
+        rdfs:comment      "Building or structure designed for use as a bicycle parking facility."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Bicycle parking station"@en , "Fahrradparkstation"@de ;
+        rdfs:subClassOf   mv:ParkingFacility ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date .
+
+mv:queuingTime  a         owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "The current queuing time (duration) for entering the parking facility."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "queuing time"@en , "Wartezeit"@de ;
+        rdfs:range        xsd:string ;
+        dct:created       "2017-05-15"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:ParallelParking  a     mv:ArrangementPattern ;
+        rdfs:comment      "Bei der Längsaufstellung wird das Fahrzeug (gemäß § 12 StVO) parallel zur Fahrbahn geparkt. Diese Fahrzeugaufstellung ist die gängigste Aufstellungsart an Straßen."@de , "With parallel parking, vehicles are arranged in a line, with the front of one vehicle facing the back of an adjacent one. This is done parallel to a curb, when one is provided. Parallel parking is the most common mode of roadside parking for vehicles."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Parallel parking"@en , "Längsaufstellung"@de ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en ;
+        skos:altLabel     "Parallelaufstellung"@de ;
+        skos:prefLabel    "Parallel parking"@en , "Längsaufstellung"@de .
+
+mv:BikeAndRide  a         mv:ParkingFacilityConnection ;
+        rdfs:comment      "Parking facilities for bicycles with connection to public transport."@en ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Bike and Ride"@en .
+
+mv:numberOfLevels  a      owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "Indicates the total number of levels a parking facility has."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Anzahl Ebenen"@de , "number of levels"@en ;
+        rdfs:range        xsd:integer ;
+        dct:created       "2018-01-11"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:rateOfOccupancy  a     owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "Indicates the percentage value of parking spaces occupied in a parking facility."@en ;
+        rdfs:domain       mv:ParkingFacility ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Belegungsrate"@de , "rate of occupancy"@en ;
+        rdfs:range        xsd:string ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
+
+mv:totalCapacity  a       owl:DatatypeProperty , rdf:Property ;
+        rdfs:comment      "Indicates the capacity of a resource. Ex: parking facility, car, bycycle etc."@en ;
+        rdfs:domain       mv:Capacity ;
+        rdfs:isDefinedBy  mv: ;
+        rdfs:label        "Gesamtkapazität"@de , "total capacity"@en ;
+        rdfs:range        xsd:integer ;
+        dct:created       "2017-05-10"^^xsd:date ;
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
