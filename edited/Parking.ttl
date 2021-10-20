@@ -12,7 +12,7 @@
 mv:RealTimeCapacity  a    owl:Class , rdfs:Class ;
         rdfs:comment      "Real-time capacity of a parking facility or parking space."@en ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "Echtzeit-Kapazität"@de , "Real time capacity huge"@en ;
+        rdfs:label        "Echtzeit-Kapazität"@de , "Real time capacity"@en ;
         rdfs:subClassOf   mv:Capacity ;
         dct:created       "2017-05-15"^^xsd:date ;
         dct:modified      "2018-01-12"^^xsd:date ;
@@ -27,16 +27,19 @@ mv:PerpendicularParking
         dct:modified      "2018-01-12"^^xsd:date ;
         vs:term_status    "stable"@en ;
         skos:altLabel     "Bay parking"@en ;
-        skos:prefLabel    "Perpendicular parking"@en .
+        skos:prefLabel    "Perpendicular parking edited"@en .
 
 mv:ArrangementPattern
         a                 owl:Class , rdfs:Class ;
+<<<<<<< HEAD
         rdfs:comment      "Pattern how parking spaces are arranged in s  in a parking facility Akash or at roadside."@en , "Art und Weise, wie ein Fahrzeug auf einer Parkfläche assufgestellt wird."@de ;
+=======
+        rdfs:comment      "Art und Weise, wie  as ein Fahrzeug auf einer Parkfläche aufgestellt wird."@de ;
+>>>>>>> 564df4e506ee9324d792cda171176c7275fa39fd
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "Aufstellart"@de , "Arrangement pattern"@en ;
         dct:created       "2017-05-10"^^xsd:date ;
-        dct:modified      "2018-01-12"^^xsd:date ;
-        vs:term_status    "stable"@en .
+        dct:modified      "2018-01-12"^^xsd:date .
 
 mv:ParkingBarrier  a      mv:ParkingFacilityFeature ;
         rdfs:comment      "The parking facility has a parking barrier."@en ;
@@ -65,10 +68,11 @@ mv:feature  a             owl:ObjectProperty , rdf:Property ;
         rdfs:comment      "Indicates which feature the parking facility provides."@en ;
         rdfs:domain       mv:ParkingFacility ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "Ausstattung"@de , "feature list korchi valo to tai naki eita kemon kotha"@en ;
+        rdfs:label        "feature"@en , "Ausstattung"@de ;
         rdfs:range        mv:ParkingFacilityFeature ;
         dct:created       "2017-09-01"^^xsd:date ;
-        dct:modified      "2018-01-12"^^xsd:date .
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
 
 mv:ParkingFacility  a        owl:Class , rdfs:Class ;
         rdfs:comment         "Any facility or area assigned for parking vehicles. A parking facility can provide one or more parking spaces."@en ;
@@ -243,7 +247,7 @@ s:ParkingFacility  a      rdfs:Class ;
         rdfs:label        "ParkingFacility" .
 
 mv:charger  a             owl:ObjectProperty , rdf:Property ;
-        rdfs:comment      "Indicates whether chargers are available at the parking space. Anisur Rahman Akash"@en ;
+        rdfs:comment      "Indicates whether chargers are available at the parking space."@en ;
         rdfs:domain       mv:ParkingSpace ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "hat Ladegerät"@de , "has charger"@en ;
@@ -323,11 +327,10 @@ mv:AutomatedParkingGarage
         rdfs:label        "Automated parking garage"@en , "Automatisches Parkhaus"@de ;
         rdfs:subClassOf   mv:ParkingFacility ;
         dct:created       "2017-04-13"^^xsd:date ;
-        dct:modified      "2018-01-12"^^xsd:date ;
-        vs:term_status    "stable"@en .
+        dct:modified      "2018-01-12"^^xsd:date .
 
 mv:connectedTo  a         owl:ObjectProperty , rdf:Property ;
-        rdfs:comment      "Indicates the transport connections available. Doa korben vai"@en ;
+        rdfs:comment      "Indicates the transport connections available."@en ;
         rdfs:domain       mv:ParkingFacility ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "Anschluss an"@de , "connected to"@en ;
@@ -355,7 +358,8 @@ mv:BicycleParkingStation
         rdfs:label        "Bicycle parking station"@en , "Fahrradparkstation"@de ;
         rdfs:subClassOf   mv:ParkingFacility ;
         dct:created       "2017-05-10"^^xsd:date ;
-        dct:modified      "2018-01-12"^^xsd:date .
+        dct:modified      "2018-01-12"^^xsd:date ;
+        vs:term_status    "stable"@en .
 
 mv:queuingTime  a         owl:DatatypeProperty , rdf:Property ;
         rdfs:comment      "The current queuing time (duration) for entering the parking facility."@en ;
