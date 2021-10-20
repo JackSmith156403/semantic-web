@@ -27,7 +27,7 @@ mv:PerpendicularParking
         dct:modified      "2018-01-12"^^xsd:date ;
         vs:term_status    "stable"@en ;
         skos:altLabel     "Bay parking"@en ;
-        skos:prefLabel    "Perpendicular parking"@en .
+        skos:prefLabel    "Perpendicular parking edited"@en .
 
 mv:ArrangementPattern
         a                 owl:Class , rdfs:Class ;
