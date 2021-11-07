@@ -242,7 +242,7 @@ s:ParkingFacility  a      rdfs:Class ;
         rdfs:label        "ParkingFacility" .
 
 mv:charger  a             owl:ObjectProperty , rdf:Property ;
-        rdfs:comment      "Indicates whether chargers are available ajs at tasasdadahe parking space. Anisur Rahman Akash"@en ;
+        rdfs:comment      "Indicates whether chargers are availableasdasd ajs at tasasdadahe parking space. Anisur Rahman Akash"@en ;
         rdfs:domain       mv:ParkingSpace ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "hat Ladegerät"@de , "has charger"@en ;
