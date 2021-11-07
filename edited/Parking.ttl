@@ -245,7 +245,7 @@ mv:charger  a             owl:ObjectProperty , rdf:Property ;
         rdfs:comment      " Anisur Rahman Akash hello NN from washington, I miss you a lot"@en ;
         rdfs:domain       mv:ParkingSpace ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "hat Ladegerät"@de , "has charger"@en ;
+        rdfs:label        "hat Ladegerät"@de ;
         rdfs:range        mv:Charger ;
         dct:created       "2017-04-13"^^xsd:date ;
         dct:modified      "2018-01-12"^^xsd:date ;
