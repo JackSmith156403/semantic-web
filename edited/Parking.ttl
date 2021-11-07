@@ -322,7 +322,6 @@ mv:AutomatedParkingGarage
         vs:term_status    "stable"@en .
 
 mv:connectedTo  a         owl:ObjectProperty , rdf:Property ;
-        rdfs:comment      "Indicates the transport connections available. Doa korben vai"@en ;
         rdfs:domain       mv:ParkingFacility ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "Anschluss an"@de , "connected to"@en ;
