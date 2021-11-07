@@ -242,7 +242,7 @@ s:ParkingFacility  a      rdfs:Class ;
         rdfs:label        "ParkingFacility" .
 
 mv:charger  a             owl:ObjectProperty , rdf:Property ;
-        rdfs:comment      "Anisur Rahman Akash"@en ;
+        rdfs:comment      "Anisur Rahman Akash hello"@en ;
         rdfs:domain       mv:ParkingSpace ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "hat Ladegerät"@de , "has charger"@en ;
