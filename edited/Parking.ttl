@@ -8,7 +8,7 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix gr:    <http://purl.org/goodrelations/v1#> .
 @prefix vs:    <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-ashdasdhasdhashdsdh 
+
 mv:RealTimeCapacity  a    owl:Class , rdfs:Class ;
         rdfs:comment      "Real-time capacity of a parking facility or parking space."@en ;
         rdfs:isDefinedBy  mv: ;
@@ -244,6 +244,7 @@ s:ParkingFacility  a      rdfs:Class ;
 mv:charger  a           owl:ObjectProperty , rdf:Property ;
         rdfs:comment    " Anisur Rahman Akash hello NN from washington, I miss you a lot"@en ;
         rdfs:domain     mv:ParkingSpace ;
+        rdfs:label      "hat Ladegerät"@de ;
         rdfs:range      mv:Charger ;
         dct:created     "2017-04-13"^^xsd:date ;
         dct:modified    "2018-01-12"^^xsd:date ;
