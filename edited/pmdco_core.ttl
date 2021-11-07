@@ -4,7 +4,7 @@
 @prefix xml:   <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
-asdasdaskjdkhskjadhaksj 
+
 :hasProcessNodeIdentifier
         a                   owl:DatatypeProperty ;
         rdfs:comment        "A string intended to uniquely identify a process node in a given scope, e.g. global scope: serial number, organization scope, asset management identifier."@en ;
