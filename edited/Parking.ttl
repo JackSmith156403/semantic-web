@@ -243,6 +243,7 @@ s:ParkingFacility  a      rdfs:Class ;
 
 mv:charger  a         owl:ObjectProperty , rdf:Property ;
         rdfs:domain   mv:ParkingSpace ;
+        rdfs:label    "hat Ladegerät"@de ;
         rdfs:range    mv:Charger ;
         dct:created   "2017-04-13"^^xsd:date ;
         dct:modified  "2018-01-12"^^xsd:date .
