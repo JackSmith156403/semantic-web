@@ -218,7 +218,7 @@ mv:level  a               owl:DatatypeProperty , rdf:Property ;
         vs:term_status    "stable"@en .
 
 mv:ParkingSpace  a        owl:Class , rdfs:Class ;
-        rdfs:comment      "A parking space is a location that is designated for parking a vehicle. A parking space has a certain size, is sometimes marked and can be located at roadside or inside a parking facility. Depending on the location of the parking space, there can be regulations regarding the time allowed to park and a fee paid to use the parking space."@en ;
+        rdfs:comment      "A parking space is aaaa location that is designated for parking a vehicle. A parking space has a certain size, is sometimes marked and can be located at roadside or inside a parking facility. Depending on the location of the parking space, there can be regulations regarding the time allowed to park and a fee paid to use the parking space."@en ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "Parking space"@en , "Stellplatz"@de ;
         rdfs:subClassOf   s:CivicStructure ;
