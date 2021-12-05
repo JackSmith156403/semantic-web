@@ -12,7 +12,7 @@
 mv:RealTimeCapacity  a    owl:Class , rdfs:Class ;
         rdfs:comment      "Real-time capacity of a parking facility or parking space."@en ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "Echtzeit-Kapazität"@de , "Real time capacity huge"@en ;
+        rdfs:label        "Real time capacity huge"@en , "Echtzeit-Kapazität Akash"@de ;
         rdfs:subClassOf   mv:Capacity ;
         dct:created       "2017-05-15"^^xsd:date ;
         dct:modified      "2018-01-12"^^xsd:date ;
