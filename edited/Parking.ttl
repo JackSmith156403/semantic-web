@@ -227,7 +227,7 @@ mv:ParkingSpace  a        owl:Class , rdfs:Class ;
         vs:term_status    "stable"@en ;
         skos:altLabel     "Parking spot"@en ;
         skos:hiddenLabel  "Parkplatz"@de ;
-        skos:prefLabel    "Parking space"@en , "Stellplatz"@de .
+        skos:prefLabel    "Stellplatz"@de , "Parking spaceaa"@en .
 
 mv:SurveillanceBySecurityGuards
         a                 mv:ParkingFacilityFeature ;
