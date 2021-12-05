@@ -111,7 +111,7 @@ mv:PayStation  a          mv:ParkingFacilityFeature ;
 
 mv:UndergroundParkingGarage
         a                 owl:Class , rdfs:Class ;
-        rdfs:comment      "Parking facility with one or more levels below the surface and none above ground."@en ;
+        rdfs:comment      "Parking facility withgghghhgg one or gggggmore levels below the surface and none above ground."@en ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "Tiefgarage"@de , "Underground parking garage"@en ;
         rdfs:subClassOf   mv:ParkingFacility ;
@@ -122,7 +122,6 @@ mv:UndergroundParkingGarage
         skos:prefLabel    "Tiefgarage"@de , "Underground parking garage"@en .
 
 mv:entrance  a            owl:ObjectProperty , rdf:Property ;
-        rdfs:comment      "Describes the entrance of a parking facility."@en ;
         rdfs:domain       mv:ParkingFacility ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "hat Einfahrt"@de , "entrance"@en ;
@@ -199,7 +198,7 @@ mv:VideoSurveillance  a   mv:ParkingFacilityFeature ;
         rdfs:label        "Videoüberwachung"@de , "Video surveillance"@en .
 
 mv:currentValue  a        owl:DatatypeProperty , rdf:Property ;
-        rdfs:comment      "Indicates the current value of the real-time capacity."@en ;
+        rdfs:comment      "Indicates the current value of the real-time capacity.hhh"@en ;
         rdfs:domain       mv:RealTimeCapacity ;
         rdfs:isDefinedBy  mv: ;
         rdfs:label        "current value"@en , "aktueller Wert"@de , "valeur courante"@fr ;
@@ -297,7 +296,7 @@ mv:maximumValue  a        owl:DatatypeProperty , rdf:Property ;
         rdfs:comment      "Indicates the maximum value of the capacity."@en ;
         rdfs:domain       mv:Capacity ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "Maximalwert"@de , "maximum value"@en ;
+        rdfs:label        "maximum value"@en , "Maximalwert asd "@de ;
         rdfs:range        xsd:integer ;
         dct:created       "2015-05-15"^^xsd:date ;
         dct:modified      "2018-01-12"^^xsd:date ;
@@ -325,7 +324,7 @@ mv:connectedTo  a         owl:ObjectProperty , rdf:Property ;
         rdfs:comment      "Indicates the transport connections available. Doa korben vai"@en ;
         rdfs:domain       mv:ParkingFacility ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "Anschluss an"@de , "connected to"@en ;
+        rdfs:label        "connected to"@en ;
         rdfs:range        mv:ParkingFacilityConnection ;
         dct:created       "2017-05-30"^^xsd:date ;
         dct:modified      "2018-01-12"^^xsd:date ;
