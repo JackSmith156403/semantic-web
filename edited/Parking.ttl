@@ -346,7 +346,7 @@ mv:BicycleParkingStation
         a                 rdfs:Class ;
         rdfs:comment      "Building or structure designed for use as a bicycle parking facility."@en ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "Bicycle parking station"@en , "Fahrradparkstation"@de ;
+        rdfs:label        "Fahrradparkstation"@de , "Bicycle parking station edited"@en ;
         rdfs:subClassOf   mv:ParkingFacility ;
         dct:created       "2017-05-10"^^xsd:date ;
         dct:modified      "2018-01-12"^^xsd:date .
