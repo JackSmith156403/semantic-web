@@ -124,7 +124,7 @@ mv:UndergroundParkingGarage
 mv:entrance  a            owl:ObjectProperty , rdf:Property ;
         rdfs:domain       mv:ParkingFacility ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "hat Einfahrt"@de , "entrance"@en ;
+        rdfs:label        "entrance"@en , "asdasd"@de ;
         rdfs:range        mv:ParkingFacilityEntrance ;
         dct:created       "2017-05-15"^^xsd:date ;
         dct:modified      "2018-01-12"^^xsd:date ;
