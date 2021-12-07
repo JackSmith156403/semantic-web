@@ -324,7 +324,7 @@ mv:connectedTo  a         owl:ObjectProperty , rdf:Property ;
         rdfs:comment      "Indicates the transport connections available. Doa korben vai"@en ;
         rdfs:domain       mv:ParkingFacility ;
         rdfs:isDefinedBy  mv: ;
-        rdfs:label        "Anschluss an"@de , "connected to new file"@en ;
+        rdfs:label        "connected to new file"@en , "Anschluss an asd "@de ;
         rdfs:range        mv:ParkingFacilityConnection ;
         dct:created       "2017-05-30"^^xsd:date ;
         dct:modified      "2018-01-12"^^xsd:date ;
