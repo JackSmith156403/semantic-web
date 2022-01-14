@@ -99,7 +99,6 @@ mv:ParkingFacility  rdf:type  owl:Class , rdfs:Class ;
 
 dcterms:date  rdf:type       rdf:Property ;
         rdfs:isDefinedBy     dcterms: ;
-        rdfs:label           "Date"@en ;
         rdfs:range           rdfs:Literal ;
         dcterms:description  "Date may be used to express temporal information at any level of granularity.  Recommended best practice is to use an encoding scheme, such as the W3CDTF profile of ISO 8601 [W3CDTF]."@en ;
         dcterms:issued       "2008-01-14"^^xsd:date ;
