@@ -4,6 +4,7 @@
 @prefix dct:     <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dul:     <http://www.loa-cnr.it/ontologies/DUL.owl#> .
+@prefix ex:      <http://example.org/> .
 @prefix foaf:    <http://xmlns.com/foaf/spec/> .
 @prefix geo:     <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix gr:      <http://purl.org/goodrelations/v1#> .
@@ -24,6 +25,8 @@
 @prefix voaf:    <http://purl.org/vocommons/voaf#> .
 @prefix void:    <http://rdfs.org/ns/void#> .
 @prefix vs:      <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix wdt:     <http://www.wikidata.org/prop/direct/> .
 @prefix xml:     <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
@@ -229,6 +232,23 @@ rami:Construction  rdf:type  owl:NamedIndividual , rami:View ;
         rdfs:comment  "Applies to the constructive deployment of the asset for selection, design of building structure or assemblies ...\nContains a structure classification system pursuant to IEC 81346.\nApplies to properties in respect of:\n1) physical dimensions and regarding start, processing and output values of the component.\n2) modular view of subcomponents or a asset structure and 3) inputs and outputs of different signal types."@en ;
         rdfs:label    "Construction"@en .
 
+rami:MeasureEnergyEfficiency1
+        rdf:type              owl:NamedIndividual , om:Measure ;
+        rdfs:comment          "Measuring the Energy Efficiency for I4.0 component 1 in kilowattHour."@en ;
+        rdfs:label            "Measure Energy Efficiency 1"@en ;
+        owl:sameAs            rami:MeasureEnergyEfficiency2 ;
+        om:hasNumericalValue  "17.3"^^xsd:float ;
+        om:hasUnit            om:kilowattHour .
+
+rami:MeasureEnergyEfficiency2
+        rdf:type              owl:NamedIndividual , om:Measure ;
+        rdfs:comment          "Measuring the Energy Efficiency for I4.0 component 2 in Kilojoule."@en ;
+        rdfs:label            "Measure Energy Efficiency 2"@en ;
+        om:hasNumericalValue  "62280.0"^^xsd:float ;
+        om:hasUnit            om:kilojoule .
+
+om:kilowattHour  rdf:type  owl:NamedIndividual .
+
 rami:LifeCycleDimension
         rdf:type             owl:Class ;
         rdfs:label           "RAMI Life Cycle Dimension"@en ;
@@ -249,23 +269,6 @@ rami:Instance  rdf:type  owl:NamedIndividual , rami:LifeCycleDimension .
 
 rami:Type  rdf:type  owl:NamedIndividual , rami:LifeCycleDimension ;
         rdfs:label  "Type"@en .
-
-rami:MeasureEnergyEfficiency1
-        rdf:type              owl:NamedIndividual , om:Measure ;
-        rdfs:comment          "Measuring the Energy Efficiency for I4.0 component 1 in kilowattHour."@en ;
-        rdfs:label            "Measure Energy Efficiency 1"@en ;
-        owl:sameAs            rami:MeasureEnergyEfficiency2 ;
-        om:hasNumericalValue  "17.3"^^xsd:float ;
-        om:hasUnit            om:kilowattHour .
-
-rami:MeasureEnergyEfficiency2
-        rdf:type              owl:NamedIndividual , om:Measure ;
-        rdfs:comment          "Measuring the Energy Efficiency for I4.0 component 2 in Kilojoule."@en ;
-        rdfs:label            "Measure Energy Efficiency 2"@en ;
-        om:hasNumericalValue  "62280.0"^^xsd:float ;
-        om:hasUnit            om:kilojoule .
-
-om:kilowattHour  rdf:type  owl:NamedIndividual .
 
 dul:isPartOf  rdf:type    owl:ObjectProperty , owl:TransitiveProperty ;
         rdfs:comment      "A relation between any entities, in this case, the Asset can be part of other Asset(s)." ;
@@ -290,9 +293,9 @@ om:hertz  rdf:type  owl:NamedIndividual .
 
 dc:subject  rdf:type  owl:AnnotationProperty .
 
-rami:Station  rdf:type   owl:NamedIndividual , rami:HierarchyLevelDimension ;
-        skos:definition  "Station hierarchy level of RAMI 4.0"@en ;
-        skos:prefLabel   "Station"@en .
+rami:WorkCenter  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Work Center hierarchy level of RAMI 4.0"@en ;
+        skos:prefLabel   "Work Center"@en .
 
 rami:HierarchyLevelDimension
         rdf:type             owl:Class ;
@@ -304,15 +307,15 @@ rami:HierarchyLevelDimension
         skos:definition      "It describes the functional classification of various circumstances within Industrie 4.0. For classification within a factory, this axis of the reference architecture(layers) follows the IEC 62264 Standard."@en ;
         skos:prefLabel       "RAMI Hierarchy Level Dimension"@en .
 
+rami:Station  rdf:type   owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Station hierarchy level of RAMI 4.0"@en ;
+        skos:prefLabel   "Station"@en .
+
 rami:isDescribedWith  rdf:type  owl:DatatypeProperty , owl:ObjectProperty ;
         rdfs:domain      rami:AdminShell ;
         rdfs:range       sto:Standard ;
         skos:definition  "Points to the Standard used to describe a given object"@en ;
         skos:prefLabel   "Is Described With"@en .
-
-rami:WorkCenter  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
-        skos:definition  "Work Center hierarchy level of RAMI 4.0"@en ;
-        skos:prefLabel   "Work Center"@en .
 
 rami:hasManifest  rdf:type  owl:ObjectProperty ;
         rdfs:domain  rami:AdminShell ;
@@ -525,6 +528,14 @@ rami:receivedAtTime  rdf:type  owl:DatatypeProperty ;
         skos:definition  "received Time of an Asset"@en ;
         skos:prefLabel   "received At Time"@en .
 
+rami:ITLayerDimension
+        rdf:type             owl:Class ;
+        rdfs:label           "RAMI IT Layer Dimension"@en ;
+        rdfs:subClassOf      rami:Dimension ;
+        owl:equivalentClass  [ rdf:type   owl:Class ;
+                               owl:oneOf  ( rami:Asset rami:Business rami:Communication rami:Functional rami:Information rami:Integration )
+                             ] .
+
 rami:hasEnergyValue  rdf:type  owl:DatatypeProperty ;
         rdfs:domain     rami:CumulativeEnergyConsumption ;
         rdfs:range      xsd:float ;
@@ -546,14 +557,6 @@ rami:ComponentManager
         rdfs:label  "Component Manager"@en .
 
 foaf:Image  rdf:type  owl:Class .
-
-rami:ITLayerDimension
-        rdf:type             owl:Class ;
-        rdfs:label           "RAMI IT Layer Dimension"@en ;
-        rdfs:subClassOf      rami:Dimension ;
-        owl:equivalentClass  [ rdf:type   owl:Class ;
-                               owl:oneOf  ( rami:Asset rami:Business rami:Communication rami:Functional rami:Information rami:Integration )
-                             ] .
 
 rami:Confirmation  rdf:type  owl:NamedIndividual , rami:ExpressionSemantic ;
         rdfs:comment  "For responses to requests that describe the capability of an asset."@en ;
