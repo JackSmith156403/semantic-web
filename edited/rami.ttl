@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix gr:   <http://purl.org/goodrelations/v1#> .
 @prefix mv:   <http://schema.mobivoc.org/#> .
@@ -11,41 +10,6 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 <https://w3id.org/i40/rami#SensorMeasurementData>
-=======
-@prefix :        <https://material-digital.de/pmdco/> .
-@prefix DUL:     <http://www.loa-cnr.it/ontologies/DUL.owl#> .
-@prefix dc:      <http://purl.org/dc/elements/1.1/> .
-@prefix dct:     <http://purl.org/dc/terms/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dul:     <http://www.loa-cnr.it/ontologies/DUL.owl#> .
-@prefix ex:      <http://example.org/> .
-@prefix foaf:    <http://xmlns.com/foaf/spec/> .
-@prefix geo:     <http://www.w3.org/2003/01/geo/wgs84_pos#> .
-@prefix gr:      <http://purl.org/goodrelations/v1#> .
-@prefix mv:      <http://schema.mobivoc.org/#> .
-@prefix obda:    <https://w3id.org/obda/vocabulary#> .
-@prefix om:      <http://www.wurvoc.org/vocabularies/om-1.8/> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix prov:    <http://www.w3.org/ns/prov#> .
-@prefix rami:    <https://w3id.org/i40/rami#> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix s:       <http://schema.org/> .
-@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix ssn:     <http://purl.oclc.org/NET/ssnx/ssn#> .
-@prefix sto:     <https://w3id.org/i40/sto#> .
-@prefix vann:    <http://purl.org/vocab/vann/> .
-@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
-@prefix voaf:    <http://purl.org/vocommons/voaf#> .
-@prefix void:    <http://rdfs.org/ns/void#> .
-@prefix vs:      <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix wd:      <http://www.wikidata.org/entity/> .
-@prefix wdt:     <http://www.wikidata.org/prop/direct/> .
-@prefix xml:     <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-
-rami:SensorMeasurementData
->>>>>>> e19ea1c5ccd4723f06d43bbc270bbfc07d616d1c
         rdf:type      owl:Class ;
         rdfs:comment  "Data measured by a sensor"@en ;
         rdfs:label    "Sensor Data"@en .
@@ -288,28 +252,7 @@ skos:narrower  rdf:type  owl:AnnotationProperty .
         rdfs:comment  "Applies to the constructive deployment of the asset for selection, design of building structure or assemblies ...\nContains a structure classification system pursuant to IEC 81346.\nApplies to properties in respect of:\n1) physical dimensions and regarding start, processing and output values of the component.\n2) modular view of subcomponents or a asset structure and 3) inputs and outputs of different signal types."@en ;
         rdfs:label    "Construction"@en .
 
-<<<<<<< HEAD
 <https://w3id.org/i40/rami#LifeCycleDimension>
-=======
-rami:MeasureEnergyEfficiency1
-        rdf:type              owl:NamedIndividual , om:Measure ;
-        rdfs:comment          "Measuring the Energy Efficiency for I4.0 component 1 in kilowattHour."@en ;
-        rdfs:label            "Measure Energy Efficiency 1"@en ;
-        owl:sameAs            rami:MeasureEnergyEfficiency2 ;
-        om:hasNumericalValue  "17.3"^^xsd:float ;
-        om:hasUnit            om:kilowattHour .
-
-rami:MeasureEnergyEfficiency2
-        rdf:type              owl:NamedIndividual , om:Measure ;
-        rdfs:comment          "Measuring the Energy Efficiency for I4.0 component 2 in Kilojoule."@en ;
-        rdfs:label            "Measure Energy Efficiency 2"@en ;
-        om:hasNumericalValue  "62280.0"^^xsd:float ;
-        om:hasUnit            om:kilojoule .
-
-om:kilowattHour  rdf:type  owl:NamedIndividual .
-
-rami:LifeCycleDimension
->>>>>>> e19ea1c5ccd4723f06d43bbc270bbfc07d616d1c
         rdf:type             owl:Class ;
         rdfs:label           "RAMI Life Cycle Dimension"@en ;
         rdfs:seeAlso         "http://www.zvei.org/en/subjects/Industry-40/Pages/The-Reference-Architectural-Model-RAMI-40-and-the-Industrie-40-Component.aspx" ;
@@ -333,7 +276,6 @@ rami:LifeCycleDimension
         rdf:type    owl:NamedIndividual , <https://w3id.org/i40/rami#LifeCycleDimension> ;
         rdfs:label  "Type"@en .
 
-<<<<<<< HEAD
 <https://w3id.org/i40/rami#MeasureEnergyEfficiency1>
         rdf:type      owl:NamedIndividual , <http://www.wurvoc.org/vocabularies/om-1.8/Measure> ;
         rdfs:comment  "Measuring the Energy Efficiency for I4.0 component 1 in kilowattHour."@en ;
@@ -358,9 +300,6 @@ rami:LifeCycleDimension
 
 <http://www.loa-cnr.it/ontologies/DUL.owl#isPartOf>
         rdf:type          owl:ObjectProperty , owl:TransitiveProperty ;
-=======
-dul:isPartOf  rdf:type    owl:ObjectProperty , owl:TransitiveProperty ;
->>>>>>> e19ea1c5ccd4723f06d43bbc270bbfc07d616d1c
         rdfs:comment      "A relation between any entities, in this case, the Asset can be part of other Asset(s)." ;
         rdfs:domain       <https://w3id.org/i40/rami#Asset> ;
         rdfs:isDefinedBy  <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
@@ -389,16 +328,10 @@ skos:altLabel  rdf:type  owl:AnnotationProperty .
 <http://purl.org/dc/elements/1.1/subject>
         rdf:type  owl:AnnotationProperty .
 
-<<<<<<< HEAD
 <https://w3id.org/i40/rami#Station>
         rdf:type         owl:NamedIndividual , <https://w3id.org/i40/rami#HierarchyLevelDimension> ;
         skos:definition  "Station hierarchy level of RAMI 4.0"@en ;
         skos:prefLabel   "Station"@en .
-=======
-rami:WorkCenter  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
-        skos:definition  "Work Center hierarchy level of RAMI 4.0"@en ;
-        skos:prefLabel   "Work Center"@en .
->>>>>>> e19ea1c5ccd4723f06d43bbc270bbfc07d616d1c
 
 <https://w3id.org/i40/rami#HierarchyLevelDimension>
         rdf:type             owl:Class ;
@@ -410,7 +343,6 @@ rami:WorkCenter  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
         skos:definition      "It describes the functional classification of various circumstances within Industrie 4.0. For classification within a factory, this axis of the reference architecture(layers) follows the IEC 62264 Standard."@en ;
         skos:prefLabel       "RAMI Hierarchy Level Dimension"@en .
 
-<<<<<<< HEAD
 <https://w3id.org/i40/rami#isDescribedWith>
         rdf:type         owl:DatatypeProperty , owl:ObjectProperty ;
         rdfs:domain      <https://w3id.org/i40/rami#AdminShell> ;
@@ -426,20 +358,6 @@ rami:WorkCenter  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
 <https://w3id.org/i40/rami#hasManifest>
         rdf:type     owl:ObjectProperty ;
         rdfs:domain  <https://w3id.org/i40/rami#AdminShell> ;
-=======
-rami:Station  rdf:type   owl:NamedIndividual , rami:HierarchyLevelDimension ;
-        skos:definition  "Station hierarchy level of RAMI 4.0"@en ;
-        skos:prefLabel   "Station"@en .
-
-rami:isDescribedWith  rdf:type  owl:DatatypeProperty , owl:ObjectProperty ;
-        rdfs:domain      rami:AdminShell ;
-        rdfs:range       sto:Standard ;
-        skos:definition  "Points to the Standard used to describe a given object"@en ;
-        skos:prefLabel   "Is Described With"@en .
-
-rami:hasManifest  rdf:type  owl:ObjectProperty ;
-        rdfs:domain  rami:AdminShell ;
->>>>>>> e19ea1c5ccd4723f06d43bbc270bbfc07d616d1c
         rdfs:label   "has Manifest"@en ;
         rdfs:range   <https://w3id.org/i40/rami#Manifest> .
 
@@ -704,22 +622,9 @@ skos:hiddenLabel  rdf:type  owl:AnnotationProperty .
         skos:definition  "received Time of an Asset"@en ;
         skos:prefLabel   "received At Time"@en .
 
-<<<<<<< HEAD
 <https://w3id.org/i40/rami#hasEnergyValue>
         rdf:type        owl:DatatypeProperty ;
         rdfs:domain     <https://w3id.org/i40/rami#CumulativeEnergyConsumption> ;
-=======
-rami:ITLayerDimension
-        rdf:type             owl:Class ;
-        rdfs:label           "RAMI IT Layer Dimension"@en ;
-        rdfs:subClassOf      rami:Dimension ;
-        owl:equivalentClass  [ rdf:type   owl:Class ;
-                               owl:oneOf  ( rami:Asset rami:Business rami:Communication rami:Functional rami:Information rami:Integration )
-                             ] .
-
-rami:hasEnergyValue  rdf:type  owl:DatatypeProperty ;
-        rdfs:domain     rami:CumulativeEnergyConsumption ;
->>>>>>> e19ea1c5ccd4723f06d43bbc270bbfc07d616d1c
         rdfs:range      xsd:float ;
         skos:prefLabel  "has Energy Value"@en .
 
@@ -744,7 +649,6 @@ dct:description  rdf:type  owl:AnnotationProperty .
 <http://xmlns.com/foaf/spec/Image>
         rdf:type  owl:Class .
 
-<<<<<<< HEAD
 <https://w3id.org/i40/rami#ITLayerDimension>
         rdf:type             owl:Class ;
         rdfs:label           "RAMI IT Layer Dimension"@en ;
@@ -755,9 +659,6 @@ dct:description  rdf:type  owl:AnnotationProperty .
 
 <https://w3id.org/i40/rami#Confirmation>
         rdf:type      owl:NamedIndividual , <https://w3id.org/i40/rami#ExpressionSemantic> ;
-=======
-rami:Confirmation  rdf:type  owl:NamedIndividual , rami:ExpressionSemantic ;
->>>>>>> e19ea1c5ccd4723f06d43bbc270bbfc07d616d1c
         rdfs:comment  "For responses to requests that describe the capability of an asset."@en ;
         rdfs:label    "Confirmation"@en .
 
