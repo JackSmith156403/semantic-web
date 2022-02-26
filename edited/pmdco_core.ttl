@@ -1,2088 +1,1040 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <meta http-equiv='cache-control' content='no-cache'>
-  <meta http-equiv='expires' content='0'>
-  <meta http-equiv='pragma' content='no-cache'>
-  <link rel="stylesheet" href="./../../../highlight/styles/default.css">
-  <link href="./../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css">
-  <link href="./../../../dist/vis-network.min.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="./../../../javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./../../../javascripts/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="./../../../stylesheets/bootstrap-treeview.min.css">
-  <link rel="stylesheet" type="text/css" href="./../../../stylesheets/dataTables.min.css">
-  <link rel="stylesheet" href="./../../../javascripts/semanticUI/semantic.min.css">
-  <link rel="stylesheet" href="./../../../stylesheets/style.css">
-  <link rel="stylesheet" type="text/css" href="./../../../stylesheets/yasqe.min.css">
-  <link href="./../../../stylesheets/mTab-style.css" type="text/css" rel="stylesheet" />
-  <script src="./../../../dist/vis.min.js"></script>
-  <script src="./../../../javascripts/bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="./../../../javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js">
-  </script>
-  <script src="./../../../javascripts/semanticUI/semantic.min.js"></script>
-  <script src="./../../../javascripts/jquery-mTab-min.js"></script>
-  <script src="./../../../javascripts/yasqe.bundled.js"></script>
-  <script src="./../../../javascripts/bootstrap-treeview.min.js"></script>
-  <script src="./../../../javascripts/lodash.js"></script>
-  <script type="text/javascript" src="./../../../javascripts/datatables.min.js"></script>
-  <script src="./../../../highlight/highlight.pack.js"></script>
-  <script src="./../../../javascripts/d3sparql/d3sparql.js"></script>
-  <script src="./../../../javascripts/d3sparql/queries.js"></script>
-  <script src="./../../../javascripts/d3sparql/lib/d3/d3.v3.min.js"></script>
-  <script src="./../../../javascripts/chart.js-2.8.0/package/dist/Chart.bundle.js"></script>
-  <script src="./../../../javascripts/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="./../../../javascripts/semanticUI/semantic.min.js"></script>
-  <script src="./../../../javascripts/jquery-mTab-min.js"></script>
-  <script src="./../../../javascripts/bootstrap-treeview.min.js"></script>
-  <script src="./../../../javascripts/lodash.js"></script>
-  <script src="./../../../javascripts/chart.js-2.8.0/package/dist/Chart.bundle.js"></script>
-  <script src="./../../../javascripts/d3sparql/d3sparql.js"></script>
-  <script src="./../../../ckeditor/ckeditor.js"></script>
-  <script src="./../../../javascripts/md5.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/siiimple-toast/dist/siiimple-toast.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
- 
-
-
-</head>
-
-<body>
-  <div class="ui  fixed inverted menu" style="    padding-bottom: 0;    padding-top: 0;  ">
-    <div class="ui huge inverted  menu">
-      <a href="./../../../" class="item">
-        <img src="./../../../images/logo.png">
-      </a>
-      <h1 id="instanceNameHeader" class="ui white big header item">
-
-      </h1>
-      <a id="homeAncor" class="item">
-        Home
-      </a>
-      <a id="editingAncor" href="./editor" class="item" /*style="display:none"*/>Editing</a>
-      <a id="documentationAncor" href="./documentation" class="item">Documentation</a>
-      <div id="VisandKG" class="ui simple dropdown item" /*style="display:none"*/>
-        Visualization
-        <div  class="menu" >
-          <a id="visualizationAncor" href="./visualization" class="item" >Webvowl</a>
-          <a id="kgbuilderAncor" href="./kgbuilder" class="item">KGBuilder</a>
-        </div>
-      </div> 
-      <a id="visualization1Ancor" href="./visualization" class="item" /*style="display:none"*/ >Visualization</a>
-      <a id="queryingAncor" href="./querying" class="item" /*style="display:none"*/>Querying</a>
-      <a id="evolutionAncor" href="./evolution" class="item" /*style="display:none"*/>Evolution</a>
-      <a id="analyticsAncor" href="./analytics" class="item" /*style="display:none"*/>Analytics</a>
-      <a id="validationAncor" href="./validation" class="item">Validation</a>
-      <a id="mappingAncor" href="./mapping" class="item">Mapping</a>
-      <a id="QBuilderAncor" href="./QBuilder" class="item">QBuilder</a>
-      <a id="ontopAncor" href="./ontop" class="item">Ontop</a>
-    </div>
-      <div class="right menu">
-        <div id="showBranch" class="item" style="display: none">Branch
-          <div id="selectOntology" class="ui pointing dropdown link item">
-            <span class="text">Select branch</span>
-            <i class="dropdown icon"></i>
-            <div id="ontologyMenu" class="menu">
-            </div>
-          </div>
-        </div>
-        <a id="repositoryURL" href="" class="item" style="display: none"><i
-            class="teal github alternate large icon"></i> </a>
-
-
-        <div id="loggedUsername" class="item" style="display: none"><i class="teal user large icon"></i> User
-          <div class="ui floating dropdown ">
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <a id="userhomepage" class="item" href="/user/homepage"><i class="edit icon"></i> User Homepage</a>
-              <a id="adminhomepage" class="item" href="/instanceAdmin/homepage"><i class="edit icon"></i> Admin Homepage</a>
-              <a class="item" id="changeProfile"><i class="edit icon"></i> Change Profile</a>
-              <a class="item" id="configInstance"><i class="cogs icon"></i> Configure Instance</a>
-              <a id="logoutClick" class="item" onclick="logOut()"><i class="logout icon"></i> Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-  <div id="coverScreen" class="LockOn" style=" display: none;">
-  </div>
-  <style>
-    .ui.menu .item>img:not(.ui) {
-      width: 7.9em;
-    }
-
-    .ui.menu {
-      font-size: 1.2rem;
-    }
-  </style>
-
-
-
-<div class="ui grid">
-  <div class="ui container">
-    <div id="infoTabs" style="overflow-x: hidden; overflow-y: auto;    margin-bottom: 7%;     margin-top: 1%;padding-top: 100px;      ">
-      <div id="externalInfo"></div>
-      <ul id="viewList" class="nav nav-tabs" style="display: none">
-        <li class="active"><a class="nav-link active" data-toggle="tab" id="documentationTab"
-            href="#documentation">Documentation</a></li>
-        <li><a class="nav-link" data-toggle="tab" id="sourceCodeTab" href="#sourceCode">Source</a></li>
-        <li><a class="nav-link" data-toggle="tab" id="graphTab" href="#showGraph">Graphical depiction</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="documentation" role="tabpanel">
-          <div id="infoDetails">
-            <h2 id="conceptHead" style="display: none; margin-top:9px"> Details: </h2>
-            <div id="detailTable" style="padding-bottom:20px"></div>
-            <div id="domainTable" style="display: none; padding-bottom:20px"></div>
-            <div id="rangeTable" style="display: none; padding-bottom:20px"></div>
-            <div id="domainPropertyTable" style="display: none; padding-bottom:20px"></div>
-            <div id="rangePropertyTable" style="display: none; padding-bottom:20px"></div>
-            <div id="instancesTable" style="display: none"></div>
-            <h4 id="instanceHead" style="display: none; margin-top:9px"></h4>
-            <div id="instanceDetailsTable" style="display: none"></div>
-          </div>
-        </div>
-        <div class="tab-pane" class="tabContent" id="sourceCode" role="tabpanel">
-          <div class="ui buttons">
-            <button class="ui red basic button" id="turtleCodeBnt" value="text/turtle">Turtle/NTriples</button>
-            <button class="ui teal basic button" id="ldJsonCodeBnt" value="application/ld+json"
-              style="display: none">JSON-LD</button>
-            <button class="ui blue basic button" id="rdfxmlCodeBnt" value="application/rdf+xml"
-              style="display: none">RDF/XML</button>
-          </div>
-          <div id="yasqe" style="overflow: hidden"></div>
-          <div id="yasqe" style="overflow: hidden;display: none"></div>
-          <div id="xmlCodeDiv" style="display: none">
-            <pre><code  id="xmlCode" ></code></pre>
-          </div>
-          <div id="jsonCodeDiv" style="display: none">
-            <pre><code  id="jsonCode" ></code></pre>
-          </div>
-
-        </div>
-        <div class="tab-pane" class="tabContent" id="showGraph" role="tabpanel">
-          <div id="mynetwork"></div>
-          <p id="selection"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<div class="ui bottom fixed inverted  menu" style="    height: 50px;">
-        <a href="./../../dataProtection" class="item">
-            Data Protection
-        </a>
-        <a href="./../../Imprint" class="item">
-            Imprint
-        </a>
-        <div class="middle menu">
-            <a href="https://vocol.iais.fraunhofer.de/" class="item">&copy; 2021 vocol.iais.fraunhofer.de</a>
-        </div>
-        <div class="right menu">
-            <div id="showBranch" class="item" style="display: none">Branch
-              <div id="selectOntology" class="ui pointing dropdown link item">
-                <span class="text">Select branch</span>
-                <i class="angle up icon"></i>
-                <div id="ontologyMenu" class="menu">
-                </div>
-              </div>
-            </div>
-            <a id="repositoryURL" href="" class="item" style="display: none"><i
-                class="teal github alternate large icon"></i> </a>
-          </div>
-        <!-- <div class=" big right menu">
-            <div class=" big right menu">
-                <a href="https://github.com/vocol/vocol" class="item"> <i class="teal github icon"></i></a>
-        </div>    
-        </div> -->
-    </div>
-</body>
-</html>
-<style>
-    .ui.menu .item>img:not(.ui) {
-    width: 7.9em;
-    }
-    
-    .ui.menu {
-    font-size: 1.2rem;
-    }
-
- i.teal.github.icon{
-font-size: 2em;
-}
-    
-    .ui.card,
-    .ui.cards>.card {
-    width: auto;
-    margin-top: 40px;
-    }
-    .Site {
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-    
-    .Site-content {
-      flex: 1;
-    }
-    </style>
-<!-- End of expressJS coding-->
-
-<!-- Start of javascript coding-->
-
-<script>
-  // Commented out [creating issues]. to be checked if any issues
-  // let views = JSON.stringify(views);
-
-  $.ajax({
-          type: 'POST',
-          //data: JSON.stringify(data),
-          contentType: 'application/json',
-          url: './../../../defindusertype',
-          success: function (data) {
-          responseData=data;
-          if (data.globalAdmin == false) {
-              window.location.href = './configOnto'
-                  }
-              if (data.type == 'user')
-              {
-                  $('#adminhomepage').hide();
-                  $('#configinstance').hide();
-                  $('#userhomepage').show();
-                              
-              }
-              else{
-                  $('#adminhomepage').show();
-                  $('#configinstance').show();
-                  $('#userhomepage').hide()
-
-              }
-                      
-          }
-      });
-  //////
-  // activate dropdown
-  $('.ui.dropdown')
-    .dropdown();
-
-    function logOut() {
-          console.log("logging out user admin");
-          //alert("inside of global admins");
-          $.ajax({
-              type: 'post',
-              url: './../../user/logout',
-              success:function(data)
-              {
-                  // console.log(data);
-                  // alert("inside of global admins");
-                  window.location.href = './../../signin';
-              }
-          })
-          
-
-      }
-  // global data of instnace
-  let instanceDetails = []
-  let serializations = []
-  //$("#coverScreen").show();
-  // to replace in a string
-  String.prototype.replaceAll = function (search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-  };
-
-  let endpointHeader = "http://localhost:3030/dataset/"
-  let branchNameHeader = document.URL.substring(document.URL.lastIndexOf('/') + 1);
-  let instanceNameHeader = document.URL.split('/' + branchNameHeader)[0].substring(document.URL.split('/' +
-    branchNameHeader)[0]
-    .lastIndexOf('/') + 1);
-  let currentTab = document.URL.split('/' + instanceNameHeader)[0].substring(document.URL.split('/' +
-    instanceNameHeader)[0]
-    .lastIndexOf('/') + 1);
-  let homePage = "";
-  let currentURL = document.URL.split('/' + currentTab)[0];
-  console.log(currentURL)
-  currentURL=currentURL.replace('/instance','')
-  console.log(currentURL)
-  if (currentTab == 'home' ||
-    currentTab == 'documentation' ||
-    currentTab == 'editor' ||
-    currentTab == 'analytics' ||
-    currentTab == 'kgbuilder' ||
-    currentTab == 'validation' ||
-    currentTab == 'mapping' ||
-    currentTab == 'QBuilder' ||
-    currentTab == 'ontop' ||
-    currentTab == 'visualization' ||
-    currentTab == 'querying' ||
-    currentTab == 'evolution' ||
-    currentTab == "configInstance" ||
-    currentTab == "changeProfile"
-  ) {
-    $("#instanceNameHeader").text(instanceNameHeader)
-    console.log(currentURL)
-    $("#homeAncor").attr("href", currentURL + '/home' + '/' + instanceNameHeader + '/' + branchNameHeader)
-    $("#documentationAncor").attr("href", currentURL + '/documentation' + '/' + instanceNameHeader + '/' +
-      branchNameHeader)
-    $("#kgbuilderAncor").attr("href", currentURL + '/kgbuilder' + '/' + instanceNameHeader +        '/' + branchNameHeader)
-    $("#validationAncor").attr("href", currentURL + '/validation' + '/' + instanceNameHeader + '/' + branchNameHeader)
-    $("#mappingAncor").attr("href", currentURL + '/mapping' + '/' + instanceNameHeader + '/' + branchNameHeader)
-    $("#QBuilderAncor").attr("href", currentURL + '/QBuilder' + '/' + instanceNameHeader + '/' + branchNameHeader)
-    $("#ontopAncor").attr("href", currentURL + '/ontop' + '/' + instanceNameHeader + '/' + branchNameHeader)
-    $("#visualizationAncor").attr("href", currentURL + '/visualization' + '/' + instanceNameHeader +
-      '/' + branchNameHeader)
-    $("#visualization1Ancor").attr("href", currentURL + '/visualization' + '/' + instanceNameHeader +
-      '/' + branchNameHeader)
-    $("#queryingAncor").attr("href", currentURL + '/querying' + '/' + instanceNameHeader + '/' + branchNameHeader)
-    $("#evolutionAncor").attr("href", currentURL + '/evolution' + '/' + instanceNameHeader + '/' +
-      branchNameHeader)
-    $("#editingAncor").attr("href", currentURL + '/editor' + '/' + instanceNameHeader + '/' +
-      branchNameHeader)
-    $("#analyticsAncor").attr("href", currentURL + '/analytics' + '/' + instanceNameHeader + '/' +
-      branchNameHeader)
-  } else {
-    let refTerm = document.URL.substring(document.URL.lastIndexOf('/') + 1);
-    branchNameHeader = document.URL.split('/' + refTerm)[0].substring(document.URL.split('/' +
-      refTerm)[0].lastIndexOf('/') + 1);
-    instanceNameHeader = document.URL.split('/' + branchNameHeader)[0].substring(document.URL.split('/' +
-      branchNameHeader)[0].lastIndexOf('/') + 1)
-    $("#instanceNameHeader").text(instanceNameHeader)
-
-  }
-
-
-  // query to a specific instance to be configured 
-  // let instancesDetailsQuery =
-  //   'PREFIX vmo:   <http://vocol.fraunhofer.de/vmo/> \
-  //      PREFIX  afn:  <http://jena.apache.org/ARQ/function#> \
-  //      select distinct (afn:localname(?p) as ?predicate)    ?object    where {\
-  //        vmo:' +
-  //   instanceNameHeader + ' ?p ?object.\
-  //        filter(!contains(str(?object),"NamedIndividual")).\
-  //      }';
-  // $.ajax({
-  //   type: 'POST',
-  //   data: {
-  //     // query: encodeURIComponent(instancesDetailsQuery)
-  //     query : 'instancesDetailsQuery',
-  //     instanceNameHeader : instanceNameHeader,
-  //     branchNameHeader : branchNameHeader
-  //     //testing : '+++++++++++++++++++=Test demo____________'
-  //   },
-  //   async: false,
-  //   url: './../../../sparqlServer/q',
-  //   success: function (data) {
-  //     if (data) {
-
-  //       let result = parseJSONInstanceInfo(JSON.parse(data).results.bindings)
-  //       let branches = [];
-  //       let repoBasedInstance = false;
-  //       let filledDropdownBranches = "";
-  //       instanceDetails = result;
-
-  //       for (let key in result) {
-  //         if (result[key].hasOwnProperty('additionalBranch')) {
-  //           for (let j in result[key].additionalBranch) {
-  //             branches.push(result[key].additionalBranch[j])
-  //           }
-  //         } else if (result[key].hasOwnProperty('mainBranch')) {
-  //           branches.push(result[key].mainBranch[0])
-  //         } else if (result[key].hasOwnProperty('repositoryURL')) {
-  //           $("#repositoryURL").attr("href", result[key].repositoryURL[0])
-  //         } else if (views) {
-  //           for (let i in views) {
-  //             if (views[i].includes("Analytics"))
-  //               $('#analyticsAncor').show();
-  //             if (views[i].includes("Visualization"))
-  //               $('#visualizationAncor').show();
-  //             if (result[key].Views[i].includes("KGbuilder"))
-  //               $('#kgbuilderAncor').show();
-  //               if (views[i].includes("Editing"))
-  //               $('#editingAncor').show();
-  //             if (views[i].includes("Querying"))
-  //               $('#queryingAncor').show();
-  //             if (views[i].includes("Evolution"))
-  //               $('#evolutionAncor').show();
-  //           }
-  //         } else if (result[key].hasOwnProperty('homepageDescription')) {
-  //           homePage = result[key].homepageDescription[0];
-  //         } else if (result[key].hasOwnProperty('repositoryName')) {
-  //           repoBasedInstance = true;
-  //         } else if (result[key].hasOwnProperty('SerializationFormat')) {
-  //           serializations = result[key].SerializationFormat;
-  //         }
-  //       }
-  //       // add branches to the branches droplist 
-  //       // branches = [...new Set(branches)];
-  //       // for (let k in branches) {
-  //       //   filledDropdownBranches += ' <div class="item" data-value="' +
-  //       //     branches[k] + '">' +
-  //       //     branches[k] + '</div>'
-  //       // }
-  //       $('#ontologyMenu').append(filledDropdownBranches);
-
-  //       // show droplist and URL if it is repo_Based instance 
-  //       if (repoBasedInstance) {
-  //         $('#showBranch').show();
-  //         $('#repositoryURL').show();
-  //       }
-
-  //       setTimeout(function () {
-  //         $('#selectOntology').dropdown('set selected', branchNameHeader);
-  //       }, 1);
-
-  //       $('#coverScreen').hide();
-  //     }
-  //   },
-  //   error: function (xhr, textStatus, errorThrown) {
-  //     $('#coverScreen').hide();
-  //   }
-  // });
-
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // change branch of an instance
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  $('#selectOntology').dropdown({
-    onChange: function () {
-      //alert(document.URL.split(branchName)[0] + $('#selectOntology').dropdown('get value'))
-      if ($('#selectOntology').dropdown('get value') != branchNameHeader)
-        window.location.href = document.URL.split(branchNameHeader)[0] + $('#selectOntology').dropdown(
-          'get value')
-
-    }
-  })
-
-  //TODO:
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // when logout is clicked
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // $('#logoutClick').dropdown({
-  //   onChange: function () {
-  //     //alert(document.URL.split(branchName)[0] + $('#selectOntology').dropdown('get value'))
-  //     console.log(branchNameHeader)
-  //     if ($('#selectOntology').dropdown('get value') != branchNameHeader)
-  //       window.location.href = document.URL.split(branchNameHeader)[0] + $('#selectOntology').dropdown(
-  //         'get value')
-
-  //   }
-  // })
-
-  // $('#logoutClick').click(function () {
-  //   $.ajax({
-  //     type: 'Get',
-  //     url: './../../../logout',
-  //     success: function (data) {
-  //       if (data.hasOwnProperty('username')) {
-  //         console.log(data)
-  //         /////////////////////////////////////////////////////////////////////////////////////////////////////
-  //         // check if user is logged in
-  //         /////////////////////////////////////////////////////////////////////////////////////////////////////
-  //         $('#loggedUsername').show()
-  //         var element = document.getElementById("loggedUsername");
-  //         if (data.username.username != undefined){
-  //                     element.childNodes[1].data = data.username.username
-  //                 }else{
-  //                     element.childNodes[1].data = data.username.adminUserName
-
-  //                 }
-  //       }
-  //     }
-  //   })
-  // });
-
-  $('#changeProfile').click(function () {
-    
-    window.location.href = '/changeProfile/' ;
-  });
-
-  $('#configInstance').click(function () {
-    console.log("Instance name"+instanceNameHeader)
-    window.location.href = '/configInstance/'+ instanceNameHeader;
-  });
-  
-
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // parse instance info in a meaningful JSON object
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  function parseJSONInstanceInfo(arr) {
-    let instanceJSON = []
-    let filteredInstanceJSON = []
-    let predicateArr = []
-    //first push all
-    for (let i in arr) {
-      let objectVal = arr[i].object.value;
-      let predicateVal = arr[i].predicate.value;
-
-      if (objectVal.includes('vmo/'))
-        objectVal = objectVal.split('vmo/')[1];
-      instanceJSON.push({
-        [predicateVal]: objectVal
-      })
-    }
-    // store values with a same key in an array
-    for (let i in instanceJSON) {
-      objectArr = []
-      if (predicateArr.indexOf(Object.keys(instanceJSON[i]).toString()) == -1) {
-        predicateArr.push(Object.keys(instanceJSON[i]).toString())
-        for (let j in instanceJSON) {
-          if (Object.keys(instanceJSON[i]).toString() == Object.keys(instanceJSON[j]).toString()) {
-            objectArr.push(Object.values(instanceJSON[j]).toString());
-          }
-        }
-        filteredInstanceJSON.push({
-          [Object.keys(instanceJSON[i])]: objectArr
-        })
-      }
-    }
-    return filteredInstanceJSON;
-  }
-
-  $.ajax({
-    type: 'Get',
-    url: './../../users',
-    success: function (data) {
-      if (data.hasOwnProperty('username')) {
-        /////////////////////////////////////////////////////////////////////////////////////////////////////
-        // check if user is logged in
-        /////////////////////////////////////////////////////////////////////////////////////////////////////
-        $('#loggedUsername').show()
-        var element = document.getElementById("loggedUsername");
-        if (data.username.username != undefined){
-                      element.childNodes[1].data = data.username.username
-                  }else{
-                      element.childNodes[1].data = data.username.adminUserName
-
-                  }
-      }
-    }
-  })
-
-
-
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Start :Controlling the view for individual instances
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  $('#editingAncor').hide();
-  // $('#documentationAncor').hide();
-  $('#VisandKG').hide();
-  $('#visualization1Ancor').hide();
-  $('#queryingAncor').hide();
-  $('#evolutionAncor').hide();
-  $('#analyticsAncor').hide();
-  // $('#validationAncor').hide();
-  var responseData;
-  //This variable for what type of instance is this one file or repository
-  var instanceType;
-  var data={};
-  var repository;
-  var repositoryOwner;
-  var repositoryName;
-  var repositoryService;
-  data.title=instanceNameHeader;
-  $.ajax({
-          type: 'POST',
-          data: JSON.stringify(data),
-          contentType: 'application/json',
-          url: './../../../instanceview',
-          success: function (data) {
-          responseData=data
-          repository=data.type;
-          instanceType=data.type;
-          repositoryService=data.serviceType;
-          repositoryOwner=data.repoOwner;
-          repositoryName=data.repoName
-          console.log("Repositry type: "+repository);
-          if (data.action == 'success')
-          {
-            console.log(data.views);
-            if(data.views.includes('Analytics'))
-            {
-              $('#analyticsAncor').show();
-            }
-            if(data.views.includes('Editing'))
-            {
-              $('#editingAncor').show();
-            }
-            if(data.views.includes('Evolution'))
-            {
-              $('#evolutionAncor').show();
-            }
-            if(data.views.includes('Querying'))
-            {
-              $('#queryingAncor').show();
-            }
-            if(data.views.includes('Kgbuilder') && data.views.includes('Visualization') )
-            {
-              $('#VisandKG').show();
-            }
-            else if(data.views.includes('Visualization'))
-            {
-              $('#visualization1Ancor').show();
-            }
-            
-            if(data.views.includes('Documentationediting'))
-            {
-              $('#documentationAncor').show();
-            }
-            
-          }
-          else{
-                
-              }
-          }
-          });
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // End :Controlling the view for individual instances
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  // Error Alert for when validation is not empty
-  let check4SyntaxErrors = 'PREFIX vmo:   <http://vocol.fraunhofer.de/vmo/> \
-  ASK{  ?s a   vmo:SyntaxError \
-filter contains(str(?s),"' + instanceNameHeader + branchNameHeader + '")}'
-  $.ajax({
-    url: "../../../sparqlServer/q",
-    type: "POST",
-    data: {
-      test : 'Pokemon',
-    instanceNameHeader: instanceNameHeader,
-    branchNameHeader : branchNameHeader,
-   check4SyntaxErrorsQuery: 'check4SyntaxErrorsQuery',
-      //query: encodeURIComponent(check4SyntaxErrors)
-    },
-    success: function (res) {
-      if (res)
-        if (JSON.parse(res).hasOwnProperty("boolean"))
-          if (JSON.parse(res).boolean == true) {
-            for (let i = 0; i < 3; i++) {
-              setTimeout(function () {
-                $('#validationAncor').transition('flash');
-                $("#validationAncor").css({
-                  "backgroundColor": "yellow"
-                });
-              }, 1000);
-            }
-            setTimeout(function () {
-              $("#validationAncor").css({
-                "backgroundColor": "red"
-              });
-            }, 3000);
-          }
-    },
-  });
-</script>
-
-
-<script>
-  // get all the data from route.tree.js
-  var RDFSData = [];
-  var SKOSData = [];
-  var mixRDFConcepts = [];
-  var mixSKOSConcepts = [];
-  var RDFObjPlusURI = [];
-  var SKOSObjPlusURI = [];
-  var individiualsData = [];
-  // store the selected concept
-  var currentSelectedConcept = "get?graph=http%3A%2F%2Flocalhost%3A3030%2Fdataset%2FGithubJack%2Fmain%2Fpmdco_core.ttl";
-  $("#coverScreen").show();
-
-  var StringContainsBranchName = document.URL.split('/' + currentSelectedConcept)[0];
-  var branchNameReference = StringContainsBranchName.substring(StringContainsBranchName.lastIndexOf('/')).split('/')[1];
-
-  // set selectOntologyDropdown  the selected currentBranch
-  $('select#selectOntology').val(branchNameReference)
-
-  /// works on named namedGraphs
-  var fromInQueryWithoutNamed = "";
-  var fromInQuery = "";
-
-  /////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////
-
-  // query to get RDFS_Concepts
-  var RDFSConceptsQuery = function (namedGraphsString) {
-    return ("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
-      " PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-      " PREFIX owl:  <http://www.w3.org/2002/07/owl#> " +
-      " PREFIX foaf: <http://xmlns.com/foaf/0.1/> " +
-      " PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> " +
-      " PREFIX skos: <http://www.w3.org/2004/02/skos/core#> " +
-      " PREFIX  afn:  <http://jena.apache.org/ARQ/function#> " +
-      " SELECT  DISTINCT ?concept (afn:localname(?concept) AS ?TrimmedConcept) ?RDFType ?Parent (afn:localname(?Parent) AS ?TrimmedParent)  ?g  " +
-      namedGraphsString +
-      " WHERE {   GRAPH ?g { {" +
-      " ?concept rdfs:subClassOf ?Parent . ?concept a ?RDFType.  FILTER(!isBlank(?concept)) FILTER(!isBlank(?Parent)) } " +
-      "  UNION     { ?concept rdfs:subPropertyOf ?Parent .  ?concept a ?RDFType." +
-      "  FILTER(!isBlank(?concept)) FILTER(!isBlank(?Parent)) }  " +
-      "     UNION{ ?concept a ?RDFType . OPTIONAL {?concept ?p ?o.} " +
-      "       FILTER(!isBlank(?concept)) " +
-      " FILTER (!contains(str(?RDFType), \"skos/core#\"))" +
-      " FILTER (contains(str(?RDFType), \"owl#\")||contains(str(?RDFType), \"22-rdf-syntax-ns#\")||contains(str(?RDFType),\"rdf-schema#\" ))}" +
-      " MINUS{?concept a owl:NamedIndividual  ." +
-      " }" +
-      " MINUS{?concept a owl:Thing .}" +
-      " }} "
-    );
-  }
-  // query to get Individual
-  var individualsQuery = function (namedGraphsString) {
-    return ("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
-      " PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
-      " PREFIX owl:  <http://www.w3.org/2002/07/owl#>" +
-      " PREFIX skos: <http://www.w3.org/2004/02/skos/core#>" +
-      " SELECT DISTINCT ?s ?RDFType ?g  " +
-      namedGraphsString +
-      " WHERE {    GRAPH ?g { {" +
-      " ?s a ?RDFType ; ?p ?o." +
-      " FILTER (!contains(str(?RDFType), \"owl#\"))" +
-      " FILTER (!contains(str(?RDFType), \"rdf-schema#\"))" +
-      " FILTER (!contains(str(?RDFType), \"22-rdf-syntax-ns#\"))" +
-      " FILTER (!contains(str(?RDFType), \"skos/core#\"))" +
-      " FILTER (!contains(str(?p), \"subClassOf\"))" +
-      " FILTER (!contains(str(?p), \"subPropertyOf\"))" +
-      " }" +
-      " UNION{?s a ?RDFType ." +
-      "  FILTER (contains(str(?RDFType), \"owl#NamedIndividual\"))" +
-      " }" +
-      " UNION{?s a ?RDFType ." +
-      "     FILTER (contains(str(?RDFType), \"owl#Thing\"))" +
-      " }}}");
-  }
-  // query to get RDFSObjects
-
-  var RDFSObjectsQuery = function (namedGraphsString) {
-    return ("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
-      "PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-      "PREFIX owl:  <http://www.w3.org/2002/07/owl#>  " +
-      "PREFIX foaf: <http://xmlns.com/foaf/0.1/>  " +
-      "PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>  " +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#> " +
-      "SELECT Distinct ?o ?g " +
-      namedGraphsString +
-      " WHERE {  GRAPH ?g {" +
-      "?s ?p ?o. FILTER (!isLiteral(?o))   FILTER(!isBlank(?o))" + "MINUS " +
-      "  { ?s ?p ?o. FILTER (!isLiteral(?o))   FILTER(!isBlank(?o)) FILTER(regex(str(?p), \"skos/core#\" )) }" +
-      "}}");
-
-  }
-
-  var SKOSConceptsQuery1 = function (namedGraphsString) {
-    return ("  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> " +
-      "  SELECT  distinct ?subject ?oBroader ?RDFType  ?g  " +
-      namedGraphsString + "  WHERE { " +
-      "    GRAPH ?g { { ?subject a ?RDFType . " +
-      "  OPTIONAL{?subject skos:broader ?oBroader .} " +
-      "  FILTER (contains(str(?RDFType), \"skos/core#\"))}}} ");
-  }
-  var SKOSConceptsQuery2 = function (namedGraphsString) {
-    return ("  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> " +
-      "  SELECT  distinct ?subject  ?RDFType ?oNarrower ?g   " +
-      namedGraphsString + "  WHERE { " +
-      "    GRAPH ?g { { ?subject a ?RDFType  .  " +
-      "  OPTIONAL{?subject skos:narrower ?oNarrower .} " +
-      "  FILTER (contains(str(?RDFType), \"skos/core#\"))}}} ");
-  }
-
-  var SKOSObjectsQuery = function (namedGraphsString) {
-    return ("  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>  " +
-      "  PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
-      "  PREFIX owl:  <http://www.w3.org/2002/07/owl#>  " +
-      "PREFIX foaf: <http://xmlns.com/foaf/0.1/>  " +
-      "  PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>  " +
-      "  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> " +
-      "  SELECT Distinct ?o  " + namedGraphsString +
-      "  WHERE {   GRAPH ?g { { ?s1 ?p ?o1. ?s1 ?p1 ?o  FILTER (!isLiteral(?o))   FILTER(!isBlank(?o)) FILTER(regex(str(?p), \"skos/core#\" ))   " +
-      "  MINUS {?o a owl:NamedIndividual }}}}");
-  }
-  function execQuery(currentQueryString, caller, other) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        type: 'POST',
-        data: {
-          query: encodeURIComponent(currentQueryString)
-        },
-        url: './../../../sparqlServer/query',
-        success: function (data, response, jqXHR) {
-          var result = JSON.parse(data).results.bindings;
-          if (result.length > 0) {
-            if (caller == "RDFConcepts") {
-              let JSONRDFObjectArrary = [];
-              for (var k in result) {
-                var JSONRDFObject = {
-                  "parent": (result[k].hasOwnProperty("TrimmedParent")) ? result[k][
-                    "TrimmedParent"
-                  ].value : "",
-                  "concept": result[k]["TrimmedConcept"].value,
-                  "URI": result[k]["concept"].value,
-                  "RDFType": replaceWithRDFType(result[k]["RDFType"].value),
-                  "fileName": result[k]["g"].value.substring(
-                    result[k]["g"].value.lastIndexOf('/') + 1, result[k]["g"].value[
-                  result[k]["g"].value
-                    .length])
-                };
-                JSONRDFObjectArrary.push(JSONRDFObject);
-              }
-              resolve(JSONRDFObjectArrary);
-            }
-            if (caller == "RDFObjects") {
-              var JSONRDFObjectArrary = [];
-              for (var k in result) {
-                var JSONRDFObject = {
-                  "object": replaceWithRDFType(result[
-                    k]["o"]
-                    .value),
-                  "URI": result[k]["o"].value
-                };
-                JSONRDFObjectArrary.push(JSONRDFObject);
-              }
-              resolve(JSONRDFObjectArrary);
-            } else if (caller == "Individuals") {
-              var JSONRDFObjectArrary = [];
-              for (var k in result) {
-                var JSONRDFObject = {
-                  "subject": trimInstance(result[k][
-                    "s"
-                  ].value),
-                  "subjectURI": result[k]["s"].value,
-                  "RDFType": replaceWithRDFType(result[
-                    k]["RDFType"].value),
-                  "fileName": result[k]["g"].value.substring(
-                    result[k]["g"].value.lastIndexOf(
-                      '/') + 1, result[k]["g"].value[
-                  result[k]["g"].value.length]
-                  )
-                };
-                JSONRDFObjectArrary.push(JSONRDFObject);
-              }
-              resolve(JSONRDFObjectArrary);
-            } else if (caller == "childParent") {
-              var JSONRDFObjectArrary = [];
-              for (var k in result) {
-                var JSONRDFObject = {
-                  "parent": result[k]["classParent"].value,
-                  "child": result[k]["classChild"].value
-                };
-                JSONRDFObjectArrary.push(JSONRDFObject);
-              }
-              resolve(JSONRDFObjectArrary);
-
-            } else if (caller == "SKOSBroaders") {
-              var JSONRDFObjectArrary = [];
-              for (var k in result) {
-                if (result[k]["subject"] != null) {
-                  var JSONRDFObject = {
-                    "concept": trim(result[k][
-                      "subject"
-                    ].value),
-                    "URI": result[k]["subject"].value,
-                    "fileName": result[k]["g"].value
-                      .substring(
-                        result[k]["g"].value.lastIndexOf(
-                          '/') + 1, result[k]["g"]
-                            .value[
-                      result[k]["g"].value.length
-                      ])
-                  };
-                  if (result[k]["oBroader"] !=
-                    null) {
-                    JSONRDFObject.childURI = result[
-                      k]["subject"].value;
-                    JSONRDFObject.parentURI = result[
-                      k]["oBroader"].value;
-                    JSONRDFObject.child = trim(result[
-                      k]["subject"].value);
-                    JSONRDFObject.parent = trim(result[
-                      k]["oBroader"].value);
-                  } else {
-                    JSONRDFObject.child = "";
-                    JSONRDFObject.parent = ""
-                  }
-                  if (result[k]["RDFType"].value !=
-                    null) {
-                    JSONRDFObject.RDFType = replaceWithRDFType(
-                      data.results[k]["RDFType"].value);
-
-                  }
-                  JSONRDFObjectArrary.push(JSONRDFObject);
-                }
-              }
-              resolve(JSONRDFObjectArrary);
-
-            } else if (caller == "SKOSNarrowers") {
-              var JSONRDFObjectArrary = [];
-              for (var k in result) {
-                var isDuplicateData = false;
-                if (other) {
-                  for (var i in other) {
-                    if (JSON.stringify(other[i]['parent']).includes(
-                      JSON.stringify(trim(result[
-                        k]["subject"].value))) && JSON.stringify(
-                          other[i]['child'])
-                          .includes(
-                            JSON.stringify(trim(result[
-                              k]["oNarrower"].value)))) {
-                      isDuplicateData = true;
-                      break;
-                    }
-                  }
-                }
-                if (!isDuplicateData) {
-                  if (result[k]["subject"] != null) {
-                    var JSONRDFObject = {
-                      "concept": trim(result[k][
-                        "subject"
-                      ].value),
-
-                      "URI": result[k][
-                        "subject"
-                      ].value,
-                      "fileName": result[k][
-                        "g"
-                      ].value.substring(
-                        result[k]["g"].value.lastIndexOf(
-                          '/') + 1, result[k][
-                            "g"
-                          ].value[
-                      result[k]["g"].value
-                        .length]
-                      )
-                    };
-                    if (result[k]["oNarrower"] !=
-                      null) {
-                      JSONRDFObject.parentURI = result[
-                        k]["subject"].value;
-                      JSONRDFObject.childURI = result[
-                        k]["oNarrower"].value;
-                      JSONRDFObject.parent = trim(result[
-                        k]["subject"].value);
-                      JSONRDFObject.child = trim(result[
-                        k]["oNarrower"].value);
-                    } else {
-                      JSONRDFObject.child = "";
-                      JSONRDFObject.parent = ""
-                    }
-                    if (result[k]["RDFType"].value !=
-                      null) {
-                      JSONRDFObject.RDFType = replaceWithRDFType(
-                        result[k]["RDFType"].value
-                      );
-                    }
-                    JSONRDFObjectArrary.push(JSONRDFObject);
-                  }
-                }
-              }
-              resolve(JSONRDFObjectArrary);
-
-            } else if (caller == "SKOSObjects") {
-              var JSONRDFObjectArrary = [];
-              for (var k in result) {
-                var JSONRDFObject = {
-                  "object": replaceWithRDFType(result[
-                    k]["o"]
-                    .value),
-                  "URI": result[k]["o"].value
-                };
-                JSONRDFObjectArrary.push(JSONRDFObject);
-              }
-              resolve(JSONRDFObjectArrary);
-
-            }
-          } else {
-            reject(response);
-          }
-        }
-      });
-    });
-  }
-
-
-  // check if graphList is empty
-  if (fromInQuery) {
-    RDFSData = execQuery(RDFSConceptsQuery(fromInQuery), "RDFConcepts").then(function (result) {
-      RDFSData = result;
-      // call to run getConceptInfo
-      execQuery(individualsQuery(fromInQuery), "Individuals").then(function (result) {
-        individiualsData = result;
-        execQuery(RDFSObjectsQuery(fromInQuery), "RDFObjects").then(function (result) {
-          RDFObjPlusURI = result;
-          getConceptInfo(currentSelectedConcept);
-          execQuery(SKOSConceptsQuery1(fromInQuery), "SKOSBroaders").then(function (result) {
-            var SKOSData1 = result;
-            SKOSData = SKOSData.concat(SKOSData1);
-            execQuery(SKOSConceptsQuery2(fromInQuery), "SKOSNarrowers").then(function (result) {
-              var SKOSData2 = result;
-              SKOSData = SKOSData.concat(SKOSData2)
-              execQuery(SKOSObjectsQuery(fromInQuery), "SKOSObjects").then(function (result) {
-                SKOSObjPlusURI = result;
-                getConceptInfo(currentSelectedConcept);
-                $("#coverScreen").hide();
-              }, function (error) { getConceptInfo(currentSelectedConcept); $("#coverScreen").hide(); })
-            }, function (error) {  getConceptInfo(currentSelectedConcept); $("#coverScreen").hide(); })
-          }, function (error) {  getConceptInfo(currentSelectedConcept); $("#coverScreen").hide(); })
-        }, function (error) {   getConceptInfo(currentSelectedConcept); $("#coverScreen").hide();});
-      }, function (error) {           getConceptInfo(currentSelectedConcept); $("#coverScreen").hide(); });
-    }, function (error) {      $("#coverScreen").hide(); })
-
-
-
-
-
-  }
-  // store which file is selected from the dropdown menuSize
-  var currentSelectedFile = "ALL Files";
-  // store SKOS URI of the selected node
-  var currentSelectedSKOSURI = "";
-  // store currentSelectedIndividual URI of the selected node
-  var currentSelectedIndividualURI = "";
-
-  // change the title of the page with currentSelectedConcept
-  $(document).attr("title", currentSelectedConcept);
-
-  // make unique concept in  tree
-  function uniqueArray(array) {
-    var a = array.concat();
-    for (var i = 0; i < a.length; i++) {
-      for (var j = i + 1; j < a.length; j++) {
-        if (a[i].text === a[j].text) {
-          a.splice(j--, 1);
-        }
-      }
-    }
-    return a;
-  }
-
-//   debugger
-
-  // show info. for external Concepts and thier instances
-  function showExternalInfo(str) {
-    var ExteralURI = getExternalURI(str);
-    // check if URI for external concept is exist
-    if (ExteralURI) {
-      //scrollTop if class clicked from instanceDetailsTable
-      $("#infoTabs").animate({
-        scrollTop: 0
-      }, "fast");
-      $("#instanceHead").hide();
-      $("#instanceDetailsTable").hide();
-      $("#instancesTable").hide();
-      var externalURITable = '<div class="ui attached error message">' +
-        '<div class="header"> This concept is external </div></div>';
-      // check if it URL ends with "/"
-      if (ExteralURI[ExteralURI.length - 1] === ('/')) {
-        var link = '<a href="./' + ExteralURI.slice(0, -1) + '">' + ExteralURI.slice(0, -1) + '</a>';
-      } else {
-        var link = '<a href="./' + ExteralURI + '">' + ExteralURI + '</a>';
-      }
-      //show info. about the external concept
-      externalURITable +=
-        '<div class="ui bottom attached fluid segment"> For more details, please click the following link: <br/><br/> ' +
-        link;
-      externalURITable += '</div>';
-      $('#infoTabs').show();
-      $('a[href="#documentation"]').click();
-      $('#sourceCodeTab').hide();
-      $('#graphTab').hide();
-      $('#infoDetails').show();
-      $("#domainTable").hide();
-      $("#domainPropertyTable").hide();
-      $("#rangePropertyTable").hide();
-      $("#rangeTable").hide();
-      $("#instancesTable").hide();
-      $("#instanceHead").hide();
-      $("#instanceDetailsTable").hide();
-      $("#conceptHead").show();
-      if (ExteralURI[ExteralURI.length - 1] === ('/')) {
-        var str = ExteralURI.slice(0, -1);
-        $("#conceptHead").html('<p>  Details: <code>' + trimHash(trimSlash(str)) + '</code></p>');
-      } else {
-        $("#conceptHead").html('<p>  Details: <code>' + trimHash(replaceWithRDFType(trimSlash(ExteralURI))) +
-          '</code></p>');
-      }
-      $('#detailTable').html(externalURITable);
-      $('#detailTable').transition('shake')
-      var endpoint = "./../../../fuseki/dataset/sparql?query=";
-      //var querystring = 'SELECT  ?s ' + fromInQueryWithoutNamed + ' WHERE { ?s  a <' + ExteralURI + '> }';
-      $.ajax({
-        type: 'POST',
-        data: { //query: encodeURIComponent(querystring) 
-          querystringAjaxCallTwo : 'querystringAjaxCallTwo',
-          fromInQueryWithoutNamed : fromInQueryWithoutNamed,
-          ExteralURI : ExteralURI},
-        url: './../../../sparqlServer/q',
-        success: function (data, textStatus, jqXHR) {
-          var instances = JSON.parse(data).results.bindings;
-          if (instances[0] != null) {
-            var instancesTable = '<table class="ui pink table" style="table-layout:fixed;>' +
-              '<colgroup> <col class="col-md-4"> </colgroup>' +
-              '<tr>' +
-              '<th>Individuals</th>' +
-              '</tr>';
-            for (var i = 0; i < instances.length; i++) {
-              if (instances[i]["s"].hasOwnProperty("type"))
-                if (instances[i]["s"]['type'] !== "bnode") {
-                  var instanceURI = instances[i]["s"].value;
-                  var key1 = trimHash(trimSlash(instanceURI));
-                  key1 = '<a href="./' + key1 + '">' + key1 + '</a>';
-                  instancesTable += '<tr>    <td>' + key1 + '</td>  </tr>';
-                }
-            }
-            instancesTable += '</table> ';
-            $("#instancesTable").show();
-            $("#instancesTable").html(instancesTable);
-          } else {
-            $("#instancesTable").hide();
-            $("#instanceHead").hide();
-            $("#instanceDetailsTable").hide();
-          }
-        }
-      });
-    } else {
-      infoTabs
-      $('#infoTabs').hide();
-      $('#infoDetails').hide();
-      $("#externalInfo").show();
-      $("#externalInfo").html('<p > Concept is External still has no URI</p>');
-    }
-  }
-
-  // Get the word after slash char of a string
-  function trimSlash(str) {
-    if (str.includes("/")) {
-      var n = str.split("/").pop(-1);;
-      return n;
-    } else {
-      return str;
-    }
-  }
-
-  // Get the word after hash char of a string
-  function trimHash(str) {
-    if (str.includes("#")) {
-      var n = str.split('#');;
-      var p = n[n.length - 1];
-      return p;
-    } else {
-      return str;
-    }
-  }
-
-  function trimInstance(URI) {
-    var conceptArray = [];
-    var conceptTrimmed = "";
-    if (URI.endsWith("/"))
-      URI = URI.substring(0, URI.length - 1);
-    if (URI.includes("/")) {
-      conceptArray = URI.split("/");
-      if (conceptArray != null && conceptArray.length > 0) {
-        conceptTrimmed = conceptArray[conceptArray.length - 1];
-      }
-    }
-    if (conceptTrimmed.includes("#")) {
-      conceptArray = URI.split("#");
-      if (conceptArray != null && conceptArray.length > 0) {
-        conceptTrimmed = conceptArray[conceptArray.length - 1];
-      }
-    }
-    return conceptTrimmed;
-  }
-
-  //check if concept is OWLIndividiual
-  function isOWLIndividiual(str) {
-    if (individiualsData.length > 0)
-      if (individiualsData.find(x => x.subject === str)) {
-        return true;
-      }
-    return false;
-  }
-
-  // Customization of the RDF type to show as in standards
-  function replaceWithRDFType(str) {
-    if (str.includes("22-rdf-syntax-ns")) {
-      return "rdf:" + trimHash(str);
-    } else if (str.includes('rdf-schema'))
-      return "rdfs:" + trimHash(str);
-    else if (str.includes('owl'))
-      return "owl:" + trimHash(str);
-    else if (str.includes('core#Concept') || str.includes('narrower') || str.includes('broader'))
-      return "skos:" + trimHash(str);
-    else
-      return str;
-  }
-
-  //check if concept is in our ontology or external
-  function isSKOSConcept(str) {
-    if (SKOSData.find(x => x.child === str) || SKOSData.find(x => x.parent === str) || SKOSData.find(x => x.concept ===
-      str)) {
-      return true;
-    }
-    return false;
-  }
-
-  //check if concept is in our ontology or external
-  function isConceptInside(str) {
-    if (conceptIsSKOS) {
-      if (SKOSData.find(x => x.child === str) || SKOSData.find(x => x.parent === str) || SKOSData.find(x => x.concept ===
-        str))
-        return true;
-    } else if (RDFSData.find(x => x.concept === str))
-      return true;
-    //else
-    return false;
-  }
-
-
-  // get externalURI
-  function getExternalURI(str) {
-    var array = [];
-    if (isSKOSConcept(currentSelectedConcept)) {
-      array = SKOSObjPlusURI;
-    } else {
-      array = RDFObjPlusURI;
-    }
-    for (var i = 0; i < array.length; i++) {
-      if (str === array[i].object)
-        return array[i].URI;
-    }
-    return;
-  }
-
-  // show info. details of clicked instance
-  function showInstanceDetails(instanceURI) {
-    var endpoint = "./../../fuseki/dataset/sparql?query=";
-    //var querystring = 'SELECT  ?p ?o ' + fromInQueryWithoutNamed + ' WHERE {  <' + instanceURI + '> ?p ?o }';
-    $.ajax({
-      type: 'POST',
-      data: { //query: encodeURIComponent(querystring) 
-        querystringForDocumentationAjaxCall3 : 'querystringForDocumentationAjaxCall3',
-        fromInQueryWithoutNamed : fromInQueryWithoutNamed,
-        instanceURI : instanceURI
-      },
-      url: './../../../sparqlServer/q',
-      success: function (data, textStatus, jqXHR) {
-        var instances = JSON.parse(data).results.bindings;
-        if (instances[0] != null) {
-          var instancesDetailsTable = '<table class="ui blue celled table" style="table-layout:fixed;>' +
-            '<thead><tr class="info">' +
-            '<th>Predicate</th>' +
-            '<th>Object</th>' +
-            '</tr></thead>';
-          for (var i = 0; i < instances.length; i++) {
-            var key1 = instances[i]['p'].value;
-            var key2 = instances[i]['o'].value;
-            var key2URI = key2;
-            var key3 = instances[i]['o']['xml:lang'];
-            var key4 = instances[i]['o']['type'];
-
-            //check if object is uri end with "/"
-            if ((key2.includes("http://") || key2.includes("https://")) && key4 === "literal") {
-              if (key2[key2.length - 1] === ('/'))
-                key2 = key2.slice(0, -1);
-              key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              key1 = trimHash(replaceWithRDFType(trimSlash(instances[i]['p'].value)));
-            } else {
-              key1 = trimHash(replaceWithRDFType(trimSlash(instances[i]['p'].value)));
-              key2 = trimHash(replaceWithRDFType(trimSlash(instances[i]['o'].value)));
-            }
-
-            if (key1.includes("broader") || key1.includes("narrower")) {
-              key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-            }
-            if (!isConceptInside(key2) && !isOWLIndividiual(key2) && !key1.includes("label") && key4 === "uri") {
-              key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-            }
-            if (isOWLIndividiual(key2) && !key1.includes("label") && key4 === "uri") {
-              key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-            }
-            if (isConceptInside(key2) && !key1.includes("label") && key4 === "uri") {
-              key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-            }
-            if (key3 && key4 === "literal") {
-              key2 = key2 + '@' + key3;
-            }
-            instancesDetailsTable += '<tr><td>' + key1 + '</td>    <td>' + key2 + '</td>  </tr>';
-          }
-          instancesDetailsTable += '</table> ';
-          $("#instanceHead").show();
-          $("#instanceHead").html('<h3> Individual: <code>' + trimHash(replaceWithRDFType(trimSlash(instanceURI))) +
-            '</code></h3>');
-          $("#instanceDetailsTable").show();
-          $("#instanceDetailsTable").html(instancesDetailsTable);
-          document.getElementById("instanceHead").scrollIntoView()
-
-        } else {
-          $("#instanceHead").hide();
-          $("#instanceDetailsTable").hide();
-        }
-      }
-    });
-  }
-
-
-  // To display instances of  the selected node
-  function showInstances(item) {
-    var conceptURI;
-    var isURIExist = false;
-    var data = [];
-    if (isSKOSConcept(currentSelectedConcept))
-      data = SKOSData;
-    else
-      data = RDFSData;
-
-    if (item) {
-      for (var i = 0; i < data.length; i++) {
-        if (item.toLowerCase() === data[i].concept.toLowerCase()) {
-          conceptURI = data[i].URI;
-          isURIExist = true;
-          break;
-        }
-      }
-      if (isURIExist) {
-        var endpoint = "./../../fuseki/dataset/sparql?query=";
-        var querystring = 'SELECT  ?s ' + fromInQueryWithoutNamed + ' WHERE { ?s  a <' + conceptURI + '> }';
-        $.ajax({
-          type: 'POST',
-          data: { //query: encodeURIComponent(querystring) 
-            querystringAjaxCallTwo : 'querystringAjaxCallTwo',
-            fromInQueryWithoutNamed : fromInQueryWithoutNamed,
-            ExteralURI : conceptURI},
-          url: './../../../sparqlServer/q',
-          success: function (data, textStatus, jqXHR) {
-            var instances = JSON.parse(data).results.bindings;
-            if (instances[0] != null) {
-              var instancesTable = '<table class="ui red table" style="table-layout:fixed;>' +
-                '<colgroup> <col class="col-md-4"> </colgroup>' +
-                '<tr>' +
-                '<th>Individuals</th>' +
-                '</tr>';
-              for (var i = 0; i < instances.length; i++) {
-                var instanceURI = instances[i]["s"].value;
-                var key1 = trimHash(trimSlash(instances[i]["s"].value));
-                key1 = '<a href="./' + key1 + '">' + key1 + '</a>';
-
-                instancesTable += '<tr>    <td>' + key1 + '</td>  </tr>';
-              }
-              instancesTable += '</table> ';
-              $("#instancesTable").show();
-              $("#instancesTable").html(instancesTable);
-            } else {
-              $("#instancesTable").html("");
-              $("#instancesTable").hide();
-              $("#instanceHead").hide();
-              $("#instanceDetailsTable").hide();
-            }
-          }
-        });
-      }
-    }
-  }
-
-  // show other serialization formats if the user selects them
-  if (serializations) {
-    for (let i in serializations) {
-      if (serializations[i] == 'JSON-LD')
-        $("#ldJsonCodeBnt").show();
-      if (serializations[i] == 'RDF-XML')
-        $("#rdfxmlCodeBnt").show();
-    }
-  }
-
-  var acceptHeader4SourceCode = "text/turtle";
-  // set Accept Header based on clicked button to show the reference Code
-  $(function () {
-    $(".ui.button").click(function (event) {
-      event.preventDefault();
-      acceptHeader4SourceCode = this.value;
-      if (conceptIsOWLIndividual)
-        showTurtleSource(currentSelectedIndividualURI, "Individuals");
-      else if (conceptIsSKOS) {
-        if (justOneTimeExectuted)
-          showTurtleSource(currentSelectedSKOSURI, "SKOS", "queryAsObject");
-        else
-          showTurtleSource(currentSelectedSKOSURI, "SKOS");
-      } else {
-        showTurtleSource(currentSelectedConcept);
-      }
-    });
-  });
-
-
-  // To display Turtle source for the selected node
-  function showTurtleSource(item, view, anotherQuery) {
-    var conceptURI;
-    var isURIExist = false;
-    if (conceptIsSKOS) {
-      for (var i = 0; i < SKOSData.length; i++) {
-        if (item.toLowerCase() === SKOSData[i].concept.toLowerCase()) {
-          conceptURI = SKOSData[i].URI;
-          isURIExist = true;
-          break;
-        }
-      }
-    } else if (conceptIsOWLIndividual) {
-      for (var i = 0; i < individiualsData.length; i++) {
-        if (item.toLowerCase() === individiualsData[i].subject.toLowerCase()) {
-          conceptURI = individiualsData[i].subjectURI;
-          currentSelectedIndividualURI = individiualsData[i].subjectURI;
-          isURIExist = true;
-          break;
-        }
-      }
-    } else {
-      if (item) {
-        for (var i = 0; i < RDFSData.length; i++) {
-          if (item.toLowerCase() === RDFSData[i].concept.toLowerCase()) {
-            conceptURI = RDFSData[i].URI;
-            isURIExist = true;
-            break;
-          }
-        }
-      } else if (currentSelectedConcept) {
-        for (var i = 0; i < RDFSData.length; i++) {
-          if (currentSelectedConcept.toLowerCase() === RDFSData[i].concept.toLowerCase()) {
-            conceptURI = RDFSData[i].URI;
-            isURIExist = true;
-            break;
-          }
-        }
-      } else
-        isURIExist = false;
-    }
-    if (isURIExist) {
-      var endpoint = "./../../fuseki/dataset/sparql?query=";
-      if (!anotherQuery) {
-        var querystring = 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> CONSTRUCT{<' + conceptURI + '> ?p ?o . ?s1 rdfs:domain  <' + conceptURI + '> . ?s2 rdfs:range  <' + conceptURI + '> . <' + conceptURI + '> rdfs:domain ?domains.  <' + conceptURI + '> rdfs:range ?ranges. ?s3 a <' + conceptURI + '> }' + fromInQueryWithoutNamed +
-          ' WHERE {<' +
-          conceptURI + '> ?p ?o . optional {?s1 rdfs:domain <' + conceptURI + '> }   optional {?s2 rdfs:range <' + conceptURI + '> }   optional {<' + conceptURI + '> rdfs:domain ?domains }   optional {<' + conceptURI + '> rdfs:domain ?ranges }  optional {   ?s3 a <' + conceptURI + '> .   } }';
-      } else {
-        var querystring = 'CONSTRUCT{ ?s ?p <' + conceptURI + '> .} ' + fromInQueryWithoutNamed +
-          ' WHERE { ?s ?p <' + conceptURI + '> . }';
-        var querystring = 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> CONSTRUCT{ ?s ?p <' + conceptURI + '>  . ?s1 rdfs:domain  <' + conceptURI + '> . ?s2 rdfs:range  <' + conceptURI + '> . <' + conceptURI + '> rdfs:domain ?domains.  <' + conceptURI + '> rdfs:range ?ranges. ?s3 a <' + conceptURI + '> }' + fromInQueryWithoutNamed +
-          ' WHERE {?s ?p <' +
-          conceptURI + '>  . optional {?s1 rdfs:domain <' + conceptURI + '> }   optional {?s2 rdfs:range <' + conceptURI + '> }   optional {<' + conceptURI + '> rdfs:domain ?domains }   optional {<' + conceptURI + '> rdfs:range ?ranges }  optional {   ?s3 a <' + conceptURI + '> .   } }';
-      }
-      $('div.yasqe').empty();
-      $.ajax({
-        type: 'POST',
-        data: { query: encodeURIComponent(querystring) },
-        url: './../../sparqlServer/construct?' + acceptHeader4SourceCode,
-        success: function (data, textStatus, jqXHR) {
-          $('#sourceCodeTab').show();
-          $('div.yasqe').remove();
-          var config = {
-            createShareLink: false,
-            readOnly: true,
-            syntaxErrorCheck: false,
-            lineNumbers: false
-          };
-          if (acceptHeader4SourceCode == "text/turtle") {
-            $("#jsonCodeDiv").hide();
-            $("#xmlCodeDiv").hide();
-            $("#yasqe").show();
-            // use yasqe library to display turtle format
-            var yasqe = YASQE(document.getElementById("yasqe"), config);
-            $("div.CodeMirror-gutters").remove();
-            $("div.yasqe_buttons").remove();
-            yasqe.setValue(data);
-            $("div.yasqe").transition('pulse');
-          } else {
-            hljs.initHighlightingOnLoad();
-            if (acceptHeader4SourceCode == "application/ld+json") {
-              $("#jsonCodeDiv").show();
-              $("#xmlCodeDiv").hide();
-              $("#yasqe").hide();
-              var myCodeMirror = YASQE(document.getElementById("jsonCode"), {
-                value: data,
-                mode: "javascript"
-              });
-              $("div.CodeMirror-gutters").remove();
-              $("div.yasqe_buttons").remove();
-              //$("#jsonCode").text(data);
-              $("jsonCode").transition('pulse');
-            } else {
-              $("#xmlCodeDiv").show();
-              $("#jsonCodeDiv").hide();
-              $("#yasqe").hide();
-              var myCodeMirror = YASQE(document.getElementById("xmlCode"), {
-                value: data,
-                mode: "XML/HTML"
-              });
-              $("div.CodeMirror-gutters").remove();
-              $("div.yasqe_buttons").remove();
-              $("#xmlCode").transition('pulse');
-
-            }
-          }
-        },
-        error: function (e) {
-          console.log(e);
-        }
-      });
-
-    }
-  }
-
-  // call to showTurtleSource to display the turtle format
-  // when checkbox is clicked
-  $("#sourceCodeTab").on('click', function () {
-    if (isSKOSConcept(currentSelectedConcept))
-      showTurtleSource(currentSelectedConcept, "SKOS");
-    else
-      showTurtleSource(currentSelectedConcept);
-  });
-
-
-  //check if concept used either as domain or range by other conceptsget
-  function getValuesUseditAsProperty(conceptURI, type) {
-    var hasdomainPropertyValues = false;
-    var hasRangePropertyValues = false;
-
-    // make both rangePropertyTable and domainPropertyTable  empty
-    $("#rangePropertyTable").hide();
-    $("#domainPropertyTable").hide();
-    if (type === "range") {
-      var propertyType = "rdfs:range";
-    } else {
-      var propertyType = "rdfs:domain";
-    }
-    var endpoint = "./../../fuseki/dataset/sparql?query=";
-    // var querystring = 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>' +
-    //   'SELECT  ?s ?property ?comment ' + fromInQueryWithoutNamed +
-    //   ' WHERE {' +
-    //   ' ?s ' + propertyType + ' <' + conceptURI + '>.' +
-    //   '?s ' + propertyType + '?property.' +
-    //   'OPTIONAL{?s rdfs:comment ?comment.}}';
-    $.ajax({
-      type: 'POST',
-      data: { //query: encodeURIComponent(querystring) 
-        querystringDocumentationForpropertyTypeconceptURI : 'querystringDocumentationForpropertyTypeconceptURI',
-         fromInQueryWithoutNamed : fromInQueryWithoutNamed,
-         propertyType : propertyType,
-         conceptURI : conceptURI},
-      url: './../../../sparqlServer/q',
-      'async': true,
-      success: function (data, textStatus, jqXHR) {
-        var result = JSON.parse(data).results.bindings;
-        hasdomainPropertyValues = false;
-        hasRangePropertyValues = false;
-
-        if (result[0] != null) {
-          var rangePropertyTable = '<table class="ui yellow celled table" style="table-layout:fixed;" >' +
-            '<thead>' +
-            '<colgroup> <col class="col-md-2"><col class="col-md-2"><col class="col-md-2"> </colgroup>' +
-            '<tr>' +
-            '<th colspan="3">Terms use it as range</th></thead>' +
-            '<tbody></tr><tr><th>Property</th><th>On Types</th><th>Description</th></tr>';
-
-          var domainPropertyTable = '<table class="ui brown celled striped table"style="table-layout:fixed;" >' +
-            '<thead>' +
-            '<colgroup> <col class="col-md-2"><col class="col-md-2"><col class="col-md-2"> </colgroup>' +
-            '<tr>' +
-            '<th colspan="3">Terms use it as domain</th></thead>' +
-            '<tbody></tr><tr><th>Property</th><th>Expected Type</th><th>Description</th></tr>';
-          var perviousKey1DomainProperty = "",
-            perviousKey2DomainProperty = "";
-          if (type === 'domain') {
-            var domianPropertyResult = result;
-            if (domianPropertyResult) {
-              hasdomainPropertyValues = true;
-              for (var i = 0; i < domianPropertyResult.length; i++) {
-                var key1 = trimHash(replaceWithRDFType(trimSlash(domianPropertyResult[i]['s'].value)));
-                var key2 = trimHash(replaceWithRDFType(trimSlash(domianPropertyResult[i]['property'].value)));
-                var key3, key4 = "";
-                if (domianPropertyResult[i].hasOwnProperty("comment"))
-                  key3 = domianPropertyResult[i]['comment'].value;
-                if(key3)
-                 if (key3.hasOwnProperty("xml:lang"))
-                   key4 = domianPropertyResult[i]['comment']['xml:lang'];
-
-                var key5 = domianPropertyResult[i]['comment']['type'];
-                if (isConceptInside(key1) && domianPropertyResult[i]['s'].type === "uri")
-                  key1 = '<a href="./' + key1 + '">' +
-                    key1 + '</a>';
-                if (isConceptInside(key2) && domianPropertyResult[i]['property'].type === "uri")
-                  key2 = '<a href="./' + key2 + '">'  +
-                    key2 + '</a>';
-                // check if rows share same values of subject and property, then combine the last comment in the same table cell
-                if (perviousKey1DomainProperty === key1 && perviousKey2DomainProperty === key2 && key4 && key5 ===
-                  "literal") {
-                  domainPropertyTable = domainPropertyTable.substring(0, domainPropertyTable.lastIndexOf(
-                    '</td> </tr>'))
-                  domainPropertyTable += '<br/><br/>' + key3 + '@' + key4 + '</td> </tr>';
-                } else if (perviousKey1DomainProperty === key1 && perviousKey2DomainProperty === key2) {
-                  domainPropertyTable = domainPropertyTable.substring(0, domainPropertyTable.lastIndexOf(
-                    '</td> </tr>'))
-                  domainPropertyTable += '<br/><br/>' + key3 + '</td> </tr>';
-                } else if (key4 && key5 === "literal")
-                  domainPropertyTable += '<tr><td style="vertical-align:middle;">' + key1 +
-                    '</td>    <td style="vertical-align:middle; text-align: center;">' + key2 + '</td>   <td>' +
-                    key3 + '@' + key4 + '</td> </tr>';
-                else
-                  domainPropertyTable += '<tr><td style="vertical-align:middle;">' + key1 +
-                    '</td>    <td style="vertical-align:middle; text-align: center;">' + key2 + '</td>   <td>' +
-                    key3 + '</td> </tr>';
-                //save pervious values of key1 and key2
-                perviousKey1DomainProperty = key1;
-                perviousKey2DomainProperty = key2;
-
-              }
-            }
-          } else if (type === 'range') {
-            var rangePropertyResult = result;
-            var perviousKey1RangeProperty = "",
-              perviousKey2RangeProperty = "";
-            if (rangePropertyResult) {
-              hasRangePropertyValues = true;
-              for (var i = 0; i < rangePropertyResult.length; i++) {
-                var key1 = trimHash(replaceWithRDFType(trimSlash(rangePropertyResult[i]['s'].value)));
-                var key2 = trimHash(replaceWithRDFType(trimSlash(rangePropertyResult[i]['property'].value)));
-                var key3 = "";
-                if (rangePropertyResult[i].hasOwnProperty("comment"))
-                  key3 = rangePropertyResult[i]['comment'].value;
-                var key4, key5 = "";
-                if (rangePropertyResult[i].hasOwnProperty("comment")){
-                  if (rangePropertyResult[i]['comment'].hasOwnProperty("xml:lang"))
-                   key4 = rangePropertyResult[i]['comment']['xml:lang'];
-                   if (rangePropertyResult[i]['comment'].hasOwnProperty("type"))
-                   key5 = rangePropertyResult[i]['comment']['type'];
-                }
-
-                if (isConceptInside(key1) && rangePropertyResult[i]['s'].type === "uri")
-                  key1 = '<a href="./' + key1 + '">' +
-                    key1 + '</a>';
-                if (isConceptInside(key2) && rangePropertyResult[i]['property'].type === "uri")
-                  key2 = '<a href="./' + key2 + '">' +
-                    key2 + '</a>';
-                // check if rows share same values of subject and property, then combine the last comment in the same table cell
-                if (perviousKey1RangeProperty === key1 && perviousKey2RangeProperty === key2 && key4 && key5 ===
-                  "literal") {
-                  rangePropertyTable = rangePropertyTable.substring(0, rangePropertyTable.lastIndexOf(
-                    '</td> </tr>'))
-                  rangePropertyTable += '<br/><br/>' + key3 + '@' + key4 + '</td> </tr>';
-                } else if (perviousKey1RangeProperty === key1 && perviousKey2RangeProperty === key2) {
-                  rangePropertyTable = rangePropertyTable.substring(0, rangePropertyTable.lastIndexOf(
-                    '</td> </tr>'))
-                  rangePropertyTable += '<br/><br/>' + key3 + '</td> </tr>';
-                } else if (key4 && key5 === "literal")
-                  rangePropertyTable += '<tr ><td style="vertical-align:middle;">' + key1 +
-                    '</td>    <td style="vertical-align:middle; text-align: center;">' + key2 + '</td>   <td>' +
-                    key3 + '@' + key4 + '</td> </tr>';
-                else
-                  rangePropertyTable += '<tr><td style="vertical-align:middle;">' + key1 +
-                    '</td>    <td style="vertical-align:middle; text-align: center;">' + key2 + '</td>   <td>' +
-                    key3 + '</td> </tr>';
-
-                perviousKey1RangeProperty = key1;
-                perviousKey2RangeProperty = key2;
-              }
-            }
-          }
-          domainPropertyTable += '</tbody></table> ';
-          rangePropertyTable += '</tbody></table> ';
-          // show domainPropertyTable if it has Values
-          if (hasdomainPropertyValues) {
-            $("#domainPropertyTable").show();
-            $("#domainPropertyTable").html(domainPropertyTable);
-          }
-          // show rangePropertyTable if it has Values
-          if (hasRangePropertyValues) {
-            $("#rangePropertyTable").show();
-            $("#rangePropertyTable").html(rangePropertyTable);
-          }
-        }
-      }
-    });
-  };
-
-
-
-  //set some of variables to false
-  var conceptIsExternal = false;
-  var conceptIsSKOS = false;
-  var conceptIsOWLIndividual = false;
-  // to query sparql endpoint return graph and queryResult
-  function getConceptInfo(item, view, anotherQuery) {
-    var str = "";
-    var isURIExist = false;
-    var conceptURI;
-    currentSelectedConcept = item;
-
-    // find to which category the term belongs to
-    if (isConceptInside(currentSelectedConcept)) {
-      if (isSKOSConcept(currentSelectedConcept)) {
-        for (var i = 0; i < SKOSData.length; i++) {
-          if (item.toLowerCase() === SKOSData[i].concept.toLowerCase()) {
-            conceptURI = SKOSData[i].URI;
-            isURIExist = true;
-            conceptIsSKOS = true;
-            break;
-          }
-        }
-      } else {
-        for (var i = 0; i < RDFSData.length; i++) {
-          if (item.toLowerCase() === RDFSData[i].concept.toLowerCase()) {
-            conceptURI = RDFSData[i].URI;
-            isURIExist = true;
-            break;
-          }
-        }
-      }
-    } else if (isOWLIndividiual(currentSelectedConcept)) {
-      for (var i = 0; i < individiualsData.length; i++) {
-        if (item.toLowerCase() === individiualsData[i].subject.toLowerCase()) {
-          conceptURI = individiualsData[i].subjectURI;
-          isURIExist = true;
-          conceptIsOWLIndividual = true;
-          break;
-        }
-      }
-    } else if (!isConceptInside(currentSelectedConcept) && !isOWLIndividiual(currentSelectedConcept)) {
-      showExternalInfo(currentSelectedConcept);
-      showInstances(currentSelectedConcept);
-      isURIExist = false;
-      conceptIsExternal = true;
-    } else {
-      alert("Concept is not found !!");
-    }
-
-    if (isURIExist) {
-      var endpoint = "./../../fuseki/dataset/sparql?query="
-      if (!anotherQuery)
-        var querystring = 'SELECT  ?p ?o ' + fromInQueryWithoutNamed + ' WHERE {  <' + conceptURI + '> ?p ?o }'
-      else
-        var querystring = 'SELECT  ?o ?p ' + fromInQueryWithoutNamed + ' WHERE { ?o ?p <' + conceptURI + '> }'
-      //  d3sparql.query(endpoint, sparql, render)
-      $.ajax({
-        type: 'POST',
-        data: { //query: encodeURIComponent(querystring) 
-          sparqlForDocumentationAjaxCallLast : 'sparqlForDocumentationAjaxCallLast',
-          anotherQuery : anotherQuery,
-          fromInQueryWithoutNamed : fromInQueryWithoutNamed,
-          conceptURI : conceptURI},
-        url: './../../../sparqlServer/q',        //type: 'GET',
-        success: function (data, textStatus, jqXHR) {
-          if (data)
-            render(JSON.parse(data));
-        }
-      });
-
-    }
-  }
-
-
-  var justOneTimeExectuted = false;
-  // Function to display data in tables on the page
-  function render(json) {
-    var dataSPARQL = json.results.bindings;
-    if (dataSPARQL) {
-      var objectOrSubject = "Object";
-      //check for spec case of skos concepts
-      if (dataSPARQL.length === 0 && conceptIsSKOS) {
-        getConceptInfo(currentSelectedSKOSURI, "SKOS", "queryAsObject");
-        showTurtleSource(currentSelectedSKOSURI, "SKOS", "queryAsObject");
-        justOneTimeExectuted = true;
-      } else {
-        if (justOneTimeExectuted)
-          objectOrSubject = "Subject";
-        if (justOneTimeExectuted && objectOrSubject === "Subject")
-          justOneTimeExectuted = false;
-
-        // needed local variables
-        var conceptHasRange = "";
-        var conceptHasDomain = "";
-        var conceptLabel;
-        var nodes = [],
-          edges = [];
-        var table = '<table class="ui green celled striped table" style="table-layout:fixed;">' +
-          '<colgroup> <col class="col-md-auto"><col class="col-md-7"> </colgroup>' +
-          '<tr class="positive">' +
-          '<th>Predicate</th>' +
-          '<th>' + objectOrSubject + '</th>' +
-          '</tr>';
-        var rangeTable = '<table class="ui yellow celled striped table" style="table-layout:fixed;" >' +
-          '<colgroup> <col class="col-md-6"> </colgroup>' +
-          '<tr class="warning">' +
-          '<th>Values expected to be one of these types</th>' +
-          '</tr>';
-        var domainTable = '<table class="ui brown celled striped table" style="table-layout:fixed;">' +
-          '<colgroup> <col class="col-md-6"> </colgroup>' +
-          '<tr class="negative">' +
-          '<th>Used on these types</th>' +
-          '</tr>';
-
-        for (var i = 0; i < dataSPARQL.length; i++) {
-          var key1 = trimHash(replaceWithRDFType(trimSlash(dataSPARQL[i]['p'].value)));
-          var key2 = dataSPARQL[i]['o'].value;
-          var key2URI = key2;
-          var key3 = "";
-          if (dataSPARQL[i]['o'].hasOwnProperty("xml:lang"))
-            key3 = dataSPARQL[i]['o']['xml:lang'];
-          var key4 = dataSPARQL[i]['o']['type'];
-
-          if (key4 != "bnode") {
-            if ((key2.includes("http://") || key2.includes("https://")) && key4 === "literal") {
-              if (key2[key2.length - 1] === ('/'))
-                key2 = key2.slice(0, -1);
-              key2 = '<a href=./' + key2URI + '>' + key2 + '</a>';
-            } else {
-              if (key2[key2.length - 1] === ('/'))
-                key2 = key2.slice(0, -1);
-              key2 = trimHash(replaceWithRDFType(trimSlash(key2)));
-            }
-            // create an array with nodes for graph visualization
-            if (key3) {
-              nodes.push({
-                id: i + 2,
-                label: key2 + "@" + key3
-              });
-            } else {
-              nodes.push({
-                id: i + 2,
-                label: key2
-              });
-            }
-            // create an array with edges for graph visualization
-            edges.push({
-              from: 1,
-              to: i + 2,
-              label: key1,
-              font: {
-                color: 'green'
-              }
-            });
-            //
-            if (key1.includes("domain")) {
-              conceptHasDomain = key1;
-              if (isConceptInside(key2) && key4 === "uri")
-                key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              else if (!isConceptInside(key2) && !isOWLIndividiual(key2) && key4 === "uri")
-                //    else
-                key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              domainTable += '<tr>    <td>' + key2 + '</td>  </tr>';
-            } else if (key1.includes("range")) {
-              conceptHasRange = key1;
-              if (isConceptInside(key2) && key4 === "uri")
-                key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              else if (!isOWLIndividiual(key2) && !isConceptInside(key2) && key4 === "uri" && dataSPARQL[i]['o'].value.includes("XMLSchema")){
-                                key2 = 'xsd:'+ key2.replace(/^\w/, c => c.toUpperCase()); ;
-                }
-              else if (!isConceptInside(key2) && !isOWLIndividiual(key2) && key4 === "uri")
-                key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              rangeTable += '<tr>    <td>' + key2 + '</td>  </tr>';
-            } else {
-              if (key1.includes("broader") || key1.includes("narrower")) {
-                key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              } else if (isOWLIndividiual(key2) && !key1.includes("label") && key4 === "uri") {
-                key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              } else if (!isConceptInside(key2) && !isOWLIndividiual(key2) && !key1.includes("label") && key4 === "uri") {
-                key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              }
-              if (isConceptInside(key2) && !key1.includes("label") && key4 === "uri") {
-                key2 = '<a href="./' + key2 + '">' + key2 + '</a>';
-              }
-              if (key3 && key4 === "literal") {
-                key2 = key2 + '@' + key3;
-              }
-            }
-            table += '<tr><td>' + key1 + '</td>    <td>' + key2 + '</td>  </tr>';
-          }
-        }
-      }
-      // close HTML tables with thier tags
-      table += '</table> ';
-      domainTable += '</table> ';
-      rangeTable += '</table> ';
-
-      $('#infoTabs').show();
-      $("#infoTabs").animate({
-        scrollTop: 0
-      }, "fast");
-
-      //display returned data on the Html tables
-      $("#conceptHead").show();
-      if (currentSelectedConcept.includes("http://") || currentSelectedConcept.includes("https://")) { //check if it skosURI
-        currentSelectedConcept = trimHash(trimSlash(currentSelectedConcept));
-      }
-      nodes.push({
-        id: 1,
-        label: currentSelectedConcept,
-        font: {
-          size: 20,
-          color: 'red',
-          face: 'sans'
-        },
-        color: '#e9d4df'
-      });
-
-      $("#conceptHead ").html('<p >  Details: <code>' + currentSelectedConcept + '</code></p>');
-      $("#infoDetails").show();
-      $('#viewList').show();
-      // domainTable has some values to show
-      if (!conceptHasDomain == "")
-        $("#domainTable").show();
-      else
-        $("#domainTable").hide();
-      // rangeTable has some values to show
-      if (!conceptHasRange == "")
-        $("#rangeTable").show();
-      else {
-        $("#rangeTable").hide();
-      }
-      $("#detailTable").html(table);
-      $("#domainTable").html(domainTable);
-      $("#rangeTable").html(rangeTable);
-
-      var dataToBeChecked = [];
-      if (conceptIsOWLIndividual) {
-        // make both rangePropertyTable and domainPropertyTable  empty
-        $("#rangePropertyTable").hide();
-        $("#domainPropertyTable").hide();
-      } else if (conceptIsSKOS) {
-        dataToBeChecked = SKOSData;
-      } else {
-        dataToBeChecked = RDFSData;
-      }
-
-      if (!conceptIsOWLIndividual) {
-        // make both rangePropertyTable and domainPropertyTable  empty
-        $("#rangePropertyTable").hide();
-        $("#domainPropertyTable").hide();
-        // get currentSelectedURI for domainPropertyTable and rangePropertyTable
-        var conceptURI = _.find(dataToBeChecked, function (o) {
-          if (o.concept === currentSelectedConcept)
-            return o;
-        }).URI;
-        // check if other concepts use this word as domain
-        getValuesUseditAsProperty(conceptURI, 'domain');
-        // check if other concepts use this word as range
-        getValuesUseditAsProperty(conceptURI, 'range');
-        showInstances(currentSelectedConcept);
-      }
-      $("#sourceCodeTab").show();
-      $('#graphTab').show();
-
-      // create a network
-      var container = document.getElementById('mynetwork');
-      var data = {
-        nodes: nodes,
-        edges: edges
-      };
-      var options = {
-        autoResize: true,
-        width: '1100px',
-        height: '400px',
-        interaction: {
-          navigationButtons: true,
-          keyboard: true
-        },
-        nodes: {
-          shape: 'dot',
-          size: 20
-        },
-        physics: {
-          enabled: true,
-          barnesHut: {
-            gravitationalConstant: -2000,
-            centralGravity: 0.3,
-            springLength: 95,
-            springConstant: 0.04,
-            damping: 0.09,
-            avoidOverlap: 0
-          },
-          forceAtlas2Based: {
-            gravitationalConstant: -50,
-            centralGravity: 0.01,
-            springConstant: 0.08,
-            springLength: 100,
-            damping: 0.4,
-            avoidOverlap: 0
-          },
-          repulsion: {
-            centralGravity: 0.2,
-            springLength: 200,
-            springConstant: 0.05,
-            nodeDistance: 100,
-            damping: 0.09
-          },
-          hierarchicalRepulsion: {
-            centralGravity: 0.0,
-            springLength: 100,
-            springConstant: 0.01,
-            nodeDistance: 120,
-            damping: 0.09
-          },
-          maxVelocity: 50,
-          minVelocity: 0.1,
-          solver: 'barnesHut',
-          stabilization: {
-            enabled: true,
-            iterations: 1000,
-            updateInterval: 100,
-            onlyDynamicEdges: false,
-            fit: true
-          },
-          timestep: 0.5,
-          adaptiveTimestep: true
-        }
-      };
-      var network = new vis.Network(container, data, options);
-      var fitNetworkFirstTime = false;
-      // add event listeners
-      network.on('select', function (params) {
-        document.getElementById('selection').innerHTML = 'Selection: ' + params.nodes;
-      });
-
-      network.on('afterDrawing', function () {
-        if (!fitNetworkFirstTime)
-          network.fit();
-        fitNetworkFirstTime = true;
-      });
-
-      // To render oncemore the graph id the graphTab is clicked
-      $('#graphTab').on('click', function () {
-        network = new vis.Network(container, data, options);
-        network.on('afterDrawing', function () {
-          if (!fitNetworkFirstTime)
-            network.fit();
-          fitNetworkFirstTime = true;
-        });
-      });
-      // To reset fitNetworkFirstTime when user click other than graphTab
-      $('#documentationTab').on('click', function () {
-        fitNetworkFirstTime = false;
-      });
-      $('#sourceCodeTab').on('click', function () {
-        fitNetworkFirstTime = false;
-      });
-
-    }
-  }
-
-
-  $(document).ready(function (e) {
-    $(document).on('click', 'a[href="#"]', function (e) {
-      e.preventDefault();
-    });
-    var currentConcept = document.URL.substring(document.URL.lastIndexOf('/') + 1);
-    let branchName = document.URL.split('/' + currentConcept)[0].substring(document.URL.split('/' + currentConcept)[
-      0].lastIndexOf('/') + 1);
-    var instaceName = document.URL.split('/' + branchName)[0].substring(document.URL.split('/' + branchName)[0].lastIndexOf(
-      '/') + 1);
-    var currentURL = document.URL.split('/' )[0];
-
-    $("#homeAncor").attr("href", currentURL + '/instance/home' + '/' + instaceName + '/' + branchName)
-    $("#editingAncor").attr("href", currentURL + '/instance/editor' + '/' + instaceName + '/' + branchName)
-    $("#documentationAncor").attr("href", currentURL + '/instance/documentation' + '/' + instaceName + '/' + branchName)
-    $("#visualizationAncor").attr("href", currentURL + '/instance/visualization' + '/' + instaceName + '/' + branchName)
-    $("#queryingAncor").attr("href", currentURL + '/instance/querying' + '/' + instaceName + '/' + branchName)
-    $("#evolutionAncor").attr("href", currentURL + '/instance/evolution' + '/' + instaceName + '/' + branchName)
-    $("#analyticsAncor").attr("href", currentURL + '/instance/analytics' + '/' + instaceName + '/' + branchName)
-    $("#validationAncor").attr("href", currentURL + '/instance/validation' + '/' + instaceName + '/' + branchName)
-    $("#mappingAncor").attr("href", currentURL + '/instance/mapping' + '/' + instaceName + '/' + branchName)
-    $("#QBuilderAncor").attr("href", currentURL + '/instance/QBuilder' + '/' + instaceName + '/' + branchName)
-    $("#ontopAncor").attr("href", currentURL + '/instance/ontop' + '/' + instaceName + '/' + branchName)
-  });
-</script>
-<!-- End of JavaScript coding-->
+@prefix atm:      <https://data.nasa.gov/ontologies/atmonto/> .
+@prefix bf:       <http://id.loc.gov/ontologies/bibframe/> .
+@prefix bibo:     <http://purl.org/ontology/bibo/> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix identity: <http://www.identity.org/ontologies/> .
+@prefix igeo:     <http://rdf.insee.fr/def/> .
+@prefix lswpm:    <http://ontology.cybershare.utep.edu/ELSEWeb/> .
+@prefix npg:      <http://ns.nature.com/terms/> .
+@prefix ore:      <http://www.openarchives.org/ore/terms/> .
+@prefix ql:       <http://semweb.mmlab.be/ns/ql#> .
+@prefix rml:      <http://semweb.mmlab.be/ns/rml#> .
+@prefix rr:       <http://www.w3.org/ns/r2rml#> .
+@prefix spcm:     <http://spi-fm.uca.es/spdef/models/deployment/spcm/> .
+
+<https://material-digital.de/pmdco/hasProcessNodeIdentifier>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A string intended to uniquely identify a process node in a given scope, e.g. global scope: serial number, organization scope, asset management identifier."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has process node identifier"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasProcessNodeCharacteristic> .
+
+<https://material-digital.de/pmdco/hasProcessNodeCharacteristic>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "The point in time a process node was commissioned (e.g. the purchase date, first day of use), represented in IEEE 1003 'Seconds since Epoch'."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has process node characteristic"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> .
+
+<https://material-digital.de/pmdco/ProcessNodeComponent>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Process Node Component"@en .
+
+<https://material-digital.de/pmdco/HeaderField>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A class bundling the semantics for a specific column in a table inside a (multidimensional) blob. Includes column number, pointer to concept, pointer to unit, and human readable description."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Header Field"@en .
+
+<https://material-digital.de/pmdco/suppliedObjectIdentifier>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A human-generated identifier associated with a discernable, tangible or simulated entity"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Object> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "supplied object identifier"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/objectCharacteristics> .
+
+<https://material-digital.de/pmdco/Object>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A discernable, tangible or simulated entity that is processed in a process by a process node. An Object is composed of Voxels."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Object"@en .
+
+<https://material-digital.de/pmdco/objectCharacteristics>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has object characteristic"@en .
+
+<https://material-digital.de/pmdco/hasNominalStartPosixTimestamp>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "The point in time a process node began to conduct a process, represented in IEEE 1003 'Seconds since Epoch'"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has nominal start posix timestamp"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalMetadataParameter> .
+
+<https://material-digital.de/pmdco/hasNominalMetadataParameter>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has nominal metadata parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalParameter> .
+
+<https://material-digital.de/pmdco/hasTypeDescription>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Description for Process Node's utility, e.g. \"Rear Vacuum Furnace Oil Quenching\""@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has type description"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasProcessNodeCharacteristic> .
+
+<https://material-digital.de/pmdco/ProcessNode>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A constituent that consumes and creates the objects in a process. The enabler of manufacture process steps, analysis process steps or simulation process steps. A process node realizes transformative processes and/or non-transformative processes."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "ProcessNode"@en .
+
+<https://material-digital.de/pmdco/hasQuantitativeNominalParameter>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe a quantity value that was input of process."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative nominal parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeParameter> .
+
+<https://material-digital.de/pmdco/Process>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A series of actions or operations conducing to an end\nIn PMD, a process is conducted via process nodes and has a discernable duration as part of a workflow. A process consumes objects and parameters. A process potentially generates new objects and measurements. A process is either a transformative process or a non-transformative process with respect to objects processed via a process node. There are primarily two types of distinguishable processes: manufacture process, analysis process. A process is a series of operations that are subordinate processes."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Process"@en .
+
+<http://wikiba.se/ontology#QuantityValue>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Wikibase extended value representing quantity." ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "QuantityValue" ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://wikiba.se/ontology#Value> .
+
+<https://material-digital.de/pmdco/hasQuantitativeParameter>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to relate values with units to process measurements and paramaeters."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] .
+
+<https://material-digital.de/pmdco/DataResource>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A data resource is file which contains parameters and measurements of a process."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Data Resource"@en .
+
+<https://material-digital.de/pmdco/SimulationNode>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A process node that implements foo as well as consumes and creates simulation objects and parameters."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Simulation Node"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/ProcessNode> .
+
+<http://wikiba.se/ontology#quantityUnit>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Unit of measurement." ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <http://wikiba.se/ontology#QuantityValue> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "quantityUnit" ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://wikiba.se/ontology#Item> .
+
+<http://wikiba.se/ontology#Item>
+        a       <http://www.w3.org/2002/07/owl#Class> .
+
+<https://material-digital.de/pmdco/hasNominalPrimaryParameter>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has nominal primary parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalParameter> .
+
+<https://material-digital.de/pmdco/hasNominalParameter>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe nominal parameters that are not associated to a quantity value."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has nominal parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasParameter> .
+
+<https://material-digital.de/pmdco/MicroscopicLevelMaterialStructure>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A material structure on a single grain level"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Microscopic Level Material Structure"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/MaterialStructure> .
+
+<https://material-digital.de/pmdco/MaterialStructure>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Structural and compositional information on a material within the regarded material level, includes 0,1,2,3 dimensional descriptions involves all material levels."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Material Structure"@en .
+
+<https://material-digital.de/pmdco/ManufactureNode>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A process node that implements transformative processes as well as consumes and creates tangible objects and typically requires inputs\nIn general but not necessarily, a manufacture node includes intrinsic analysis nodes that create corresponding measurements with respect to the process implemented by the manufacture node."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Manufacture Node"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/ProcessNode> .
+
+<https://material-digital.de/pmdco/hasHeaderFieldSequenceNumber>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A mandatory numbering representing the index of the columns in sequence"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/HeaderField> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has header field sequence number"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#positiveInteger> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/headerFieldCharacteristic> .
+
+<https://material-digital.de/pmdco/headerFieldCharacteristic>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/HeaderField> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has header field characteristic"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> .
+
+<https://material-digital.de/pmdco/hasNominalEndPosixTimestap>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "The point in time a process node finished to conduct a process, represented in IEEE 1003 'Seconds since Epoch'"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has nominal end posix timestamp"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#float> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalMetadataParameter> .
+
+<https://material-digital.de/pmdco/Voxel>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "An element representing a value on a grid in three dimensional space.\nIn PMD, an infinitesimal part of an object which is made of a homogenuous material. Size depends on the observed material level. For now, geometrically, a cubus is assumed.\nMade of a material\nDifferent Voxels can have different material properties and material structure\nA (partial) logical object that describes (a part of) a physical object"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Voxel"@en .
+
+<https://material-digital.de/pmdco/NanoLevelMaterialStructure>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A Material Structure that involves individual features within one single grain or phase like dislocations or precipitates."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Nano Level Material Structure"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/MaterialStructure> .
+
+<https://material-digital.de/pmdco/hasSecondaryMeasurement>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has secondary measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasMeasurement> .
+
+<https://material-digital.de/pmdco/hasMeasurement>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe parameters that are created by measurements of a process but that do not represent a quantity and are not associate to units."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasParameter> .
+
+<https://material-digital.de/pmdco/hasSubordinateProcess>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to link a process to its subordinate processes."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has subordinate process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/Process> .
+
+<https://material-digital.de/pmdco/hasDataResourceLocation>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property indicates that a file can be retrieved or downloaded from a specific address."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/DataResource> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has data resource location" ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#anyURI> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/dataResourceCharacteristic> .
+
+<https://material-digital.de/pmdco/dataResourceCharacteristic>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/DataResource> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has data resource characteristic"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> .
+
+<https://material-digital.de/pmdco/MesoscopicLevelMaterialStructure>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A material structure that covers multiple grains or phases of the material"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Mesoscopic Level Material Structure"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/MaterialStructure> .
+
+<https://material-digital.de/pmdco/hasParameter>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This Property is used to describe the process parameters that are not associated to quantitative values."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> .
+
+<https://material-digital.de/pmdco/hasDataResource>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to connect a Process to the Data Resource that describe the parameters and measurements produced during the process."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has data resource"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/DataResource> .
+
+<https://material-digital.de/pmdco/AnalysisProcess>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A process that is driven by the primary intent to gain new measurements\nAn analysis process is either a transformative process or a non-transformative process."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Analysis Process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/Process> .
+
+<https://material-digital.de/pmdco/>
+        a       <http://www.w3.org/2002/07/owl#Ontology> .
+
+<https://material-digital.de/pmdco/hasQuantitativeMetadataMeasurement>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative metadata measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeMeasurement> .
+
+<https://material-digital.de/pmdco/hasQuantitativeMeasurement>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe a quantity value that has been measured during the execution of a process."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeParameter> .
+
+<https://material-digital.de/pmdco/hasStartingTime>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has starting time"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> .
+
+<https://material-digital.de/pmdco/hasInputObject>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to link the processes to their input objects"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has input object"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/Object> .
+
+<https://material-digital.de/pmdco/hasPmdUnit>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "The association of a higher concept with a unit of measurement from Wikidata"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has pmd quantity unit"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/PmdSiUnit> .
+
+<https://material-digital.de/pmdco/PmdSiUnit>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Equivalent to the definition found at https://www.wikidata.org/wiki/Q61610698. Instances of this class represent a tuple of prefix and SI unit"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "PmdSiUnit"@en .
+
+<https://material-digital.de/pmdco/hasSequenceNumber>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has sequence number"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#positiveInteger> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalMetadataParameter> .
+
+<https://material-digital.de/pmdco/hasMaterialStructure>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to indicate which material structures a voxel has."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Voxel> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has material structure"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/MaterialStructure> .
+
+<https://material-digital.de/pmdco/hasAcquisitionDate>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "The point in time a process node was commissioned (e.g. the purchase date, first day of use), represented in IEEE 1003 'Seconds since Epoch'."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has acquisition date"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#positiveInteger> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasProcessNodeCharacteristic> .
+
+<https://material-digital.de/pmdco/hasQuantitativeNominalPrimaryParameter>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe a quantity value that is input of a process describing a primary process parameter."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative nominal primary parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeNominalParameter> .
+
+<https://material-digital.de/pmdco/execute>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property represents which process node executes a process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "execute"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <http://www.w3.org/2002/07/owl#topObjectProperty> .
+
+<https://material-digital.de/pmdco/NonTransformativeAnalysisProcess>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "An analysis process that is also a non-transformative process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Non Transformative Analysis Process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/AnalysisProcess> .
+
+<https://material-digital.de/pmdco/hasHeaderField>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A description for each header field included in the blob represented by the data resource"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/DataResource> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has header field"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/HeaderField> .
+
+<https://material-digital.de/pmdco/isInitialProcessNode>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to indicate the first process conducted by a process node in a series of processes conducted by the same process node."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "is initial process node"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#boolean> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalMetadataParameter> .
+
+<https://material-digital.de/pmdco/hasMetadataMeasurement>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has metadata measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasMeasurement> .
+
+<https://material-digital.de/pmdco/hasPreviousProcess>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to indicate that which process was previously run."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has previous process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/Process> .
+
+<https://material-digital.de/pmdco/hasModel>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Process Node short description, e.g. \"Vacuum Furnace\""@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has model"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasProcessNodeCharacteristic> .
+
+<https://material-digital.de/pmdco/hasGeneratedIdentifier>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A machine-readable identifier that is intended to be unique in a given scope."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> <https://material-digital.de/pmdco/ProcessNode> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has generated identifier"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalMetadataParameter> .
+
+<https://material-digital.de/pmdco/composedBy>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe which voxels and materials an object is composed of."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Object> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "composed by"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Material> <https://material-digital.de/pmdco/Voxel> )
+                ] .
+
+<https://material-digital.de/pmdco/Material>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "It is a substance or mixture of substances that constitutes an object.\nrepresented by the sum of material properties and material structure"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Material"@en .
+
+<https://material-digital.de/pmdco/isFinalProcessNode>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to indicate the last process conducted by a process node in a series of processes conducted by the same process node."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "is final process node"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#boolean> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalMetadataParameter> .
+
+<https://material-digital.de/pmdco/hasQuantitativePrimaryDataSeriesMeasurement>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative primary data series measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/HeaderField> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativePrimaryMetadata> .
+
+<https://material-digital.de/pmdco/hasQuantitativePrimaryMetadata>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative primary measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeMeasurement> .
+
+<http://wikiba.se/ontology#Value>
+        a       <http://www.w3.org/2002/07/owl#Class> .
+
+<https://material-digital.de/pmdco/ManufactureProcess>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A process that is driven by the primary intent to transform objects\nA manufacture process is always a transformative process."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Manufacture Process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/Process> .
+
+<https://material-digital.de/pmdco/hasProcessNodeName>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A human-generated identifier associated with a discernible, tangible or simulated entity intended to be unique in a given scope"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has process node name"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasProcessNodeCharacteristic> .
+
+<https://material-digital.de/pmdco/nominalProcessDuration>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "nominal process duration"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://wikiba.se/ontology#QuantityValue> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeNominalPrimaryParameter> .
+
+<https://material-digital.de/pmdco/ContinuumLevelMaterialStructure>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A material structure that is at the length level of the the entire geometry."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Continuum Level Material Structure"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/MaterialStructure> .
+
+<https://material-digital.de/pmdco/hasNominalSecondaryParameter>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has nominal secondary parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalParameter> .
+
+<https://material-digital.de/pmdco/AtomisticLevelMaterialStructure>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "It is a material length scale. Includes individual atoms and their spatial arrangement, information on the chemical elements, information on the lattice and crystal structure, 0-dimensional crystal defects"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Atomistic Level Material Structure"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/MaterialStructure> .
+
+<https://material-digital.de/pmdco/compose>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe which objects a voxel or a material contributes to compose."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Material> <https://material-digital.de/pmdco/Voxel> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "compose"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/Object> ;
+        <http://www.w3.org/2002/07/owl#inverseOf>
+                <https://material-digital.de/pmdco/composedBy> .
+
+<https://material-digital.de/pmdco/hasQuantitativeNominalSecondaryParameter>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe a quantity value that was input of process describing a secondary process parameter."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative nominal secondary parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeNominalParameter> .
+
+<https://material-digital.de/pmdco/TranformativeAnalysisProcess>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "An analysis process that is also a transformative process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Tranformative Analysis Process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/AnalysisProcess> .
+
+<https://material-digital.de/pmdco/hasQuantitativeNominalMetadataParameter>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to describe a quantity value that is input of a process describing a metadata process parameter."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative nominal metadata parameter"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeNominalParameter> .
+
+<https://material-digital.de/pmdco/hasNextProcess>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to indicate the process that was run after the current process."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has next process"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/Process> .
+
+<https://material-digital.de/pmdco/hasUnitLabel>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used the enrich a unit with its common used label."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/PmdSiUnit> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has unit label"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> .
+
+<https://material-digital.de/pmdco/generatedObjectIdentifier>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A machine-readable identifier associated with a discernable, tangible or simulated entity that is intended to be unique in a given scope. Examples for scope include: a database storing object data or a supply chain principal creating its own identifiers for the reports it generates"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Object> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has generated object identifier"@en , "generated object identifier"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/objectCharacteristics> .
+
+<https://material-digital.de/pmdco/hasOutputObject>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used to link the processes to their output objects"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has output object"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/Object> .
+
+<https://material-digital.de/pmdco/hasProcessNodeComponent>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "An object property associating a process node with its (potentially modular) components, e.g. the chambers of a heat treatment furnace."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has process node component"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <https://material-digital.de/pmdco/ProcessNodeComponent> .
+
+<https://material-digital.de/pmdco/hasProcessNodeType>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Process Node typename, e.g. \"ProTherm500\""@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has process node type"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasProcessNodeCharacteristic> .
+
+<http://wikiba.se/ontology#quantityAmount>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Amount of quantity."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <http://wikiba.se/ontology#QuantityValue> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "quantityAmount"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#decimal> .
+
+<https://material-digital.de/pmdco/hasPrimaryMeasurement>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has primary measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasMeasurement> .
+
+<https://material-digital.de/pmdco/hasHeaderFieldDescription>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A data property representing an optional human-readable description of the header field's intent."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/HeaderField> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has header field description"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/headerFieldCharacteristic> .
+
+<https://material-digital.de/pmdco/measuredProcessDuration>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/Process> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "measured process duration"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://wikiba.se/ontology#QuantityValue> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativePrimaryMetadata> .
+
+<https://material-digital.de/pmdco/hasUcumCode>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "This property is used the enrich a unit with its common used label within the UCUM vocabulary"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/PmdSiUnit> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has ucum code"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <http://www.w3.org/2002/07/owl#topDataProperty> .
+
+<https://material-digital.de/pmdco/hasSuppliedIdentifier>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A colloquial, human-generated, descriptive text qualifying the nature of a process instance used as an identifier that is not strictly intended to be unique, e.g. \"1050°C30 840°C10/ÖL\"."@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> <https://material-digital.de/pmdco/ProcessNode> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has supplied identifier"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasNominalMetadataParameter> .
+
+<https://material-digital.de/pmdco/Component>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "An object that serves a specific technical application. Constituent part of a compound of parts that builds a technical application"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Component"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <https://material-digital.de/pmdco/Object> .
+
+<https://material-digital.de/pmdco/MaterialProperty>
+        a       <http://www.w3.org/2002/07/owl#Class> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Physical property of a material"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Material Property"@en .
+
+<https://material-digital.de/pmdco/hasDataResourceSerialization>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                ""@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/DataResource> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has data resource serialization"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2000/01/rdf-schema#Datatype> ;
+                  <http://www.w3.org/2002/07/owl#oneOf>
+                          [ a       <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> ;
+                            <http://www.w3.org/1999/02/22-rdf-syntax-ns#first>
+                                    "CBOR" ;
+                            <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>
+                                    [ a       <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> ;
+                                      <http://www.w3.org/1999/02/22-rdf-syntax-ns#first>
+                                              "JSON" ;
+                                      <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>
+                                              ()
+                                    ]
+                          ]
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/dataResourceCharacteristic> .
+
+<https://material-digital.de/pmdco/hasCollectionInterfaceHint>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "A label in support of identifying a network interface and/or address used by a process node to provide primary data stored in ontologies"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has collection interface hint"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasProcessNodeCharacteristic> .
+
+<https://material-digital.de/pmdco/hasProcessNodeVersion>
+        a       <http://www.w3.org/2002/07/owl#DatatypeProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Process Node Version Number, e.g. \"2.24\""@en ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                <https://material-digital.de/pmdco/ProcessNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has process node version"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                <http://www.w3.org/2001/XMLSchema#string> ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasProcessNodeCharacteristic> .
+
+<https://material-digital.de/pmdco/hasQuantitativeSecondaryMeasurement>
+        a       <http://www.w3.org/2002/07/owl#ObjectProperty> ;
+        <http://www.w3.org/2000/01/rdf-schema#domain>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <https://material-digital.de/pmdco/Object> <https://material-digital.de/pmdco/Process> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "has quantitative secondary measurement"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#range>
+                [ a       <http://www.w3.org/2002/07/owl#Class> ;
+                  <http://www.w3.org/2002/07/owl#unionOf>
+                          ( <http://wikiba.se/ontology#QuantityValue> <https://material-digital.de/pmdco/HeaderField> )
+                ] ;
+        <http://www.w3.org/2000/01/rdf-schema#subPropertyOf>
+                <https://material-digital.de/pmdco/hasQuantitativeMeasurement> .
